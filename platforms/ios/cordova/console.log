@@ -1,0 +1,14 @@
+2015-04-22 08:12:56.191 MobileTimeRecording[33531:1300307] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/matze/Library/Developer/CoreSimulator/Devices/8E787CD8-DA29-495E-8969-DF5FF8AF1BA2/data/Containers/Data/Application/ACCDC150-05B1-4D4B-875D-024DE8C2A041/Library/Cookies/Cookies.binarycookies
+2015-04-22 08:12:56.519 MobileTimeRecording[33531:1300307] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-22 08:12:56.520 MobileTimeRecording[33531:1300307] Multi-tasking -> Device: YES, App: YES
+2015-04-22 08:12:56.532 MobileTimeRecording[33531:1300307] Unlimited access to network resources
+2015-04-22 08:12:56.539 MobileTimeRecording[33531:1300307] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-22 08:12:57.320 MobileTimeRecording[33531:1300307] Resetting plugins due to page load.
+2015-04-22 08:12:57.660 MobileTimeRecording[33531:1300307] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/8E787CD8-DA29-495E-8969-DF5FF8AF1BA2/data/Containers/Bundle/Application/A4147BC9-E37F-45C5-8DF1-832E9D6B05E3/MobileTimeRecording.app/www/index.html
