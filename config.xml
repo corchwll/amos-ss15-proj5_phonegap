@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.fau.cs.osr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.fau.cs.osr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://phonegap.com/ns/1.0">
     <name>MobileTimeRecording</name>
     <description>
-        An Apache Cordova application for mobile time recording.
+        An Apache Cordova/Phonegap application for mobile time recording.
     </description>
     <author href="https://github.com/corchwll/amos-ss15-proj5_phonegap">
         AMOS Team 5 SS15

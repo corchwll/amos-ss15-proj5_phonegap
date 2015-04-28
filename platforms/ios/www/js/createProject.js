@@ -19,9 +19,6 @@ var sqlCreateTableSessions = "CREATE TABLE IF NOT EXISTS Sessions (id INTEGER PR
 
 var sqlInsertProjects = "INSERT INTO Projects (id, name) VALUES (?, ?)";
 
-var dataset;
-
-var dataType;
 
 /* 
 function initDatabase 
@@ -44,18 +41,6 @@ function createTables()
 }
 
 /* 
-function errorFunction 
-For possible future use
-*/
-/*
-function errorFunction()
-{
-	//TODO
-}
-*/
-
-
-/* 
 function insertProject
 Reads the data which the user has entered into the app and inserts it into the database table Projects
 */
@@ -75,26 +60,4 @@ function insertProject()
 	console.log("Insert complete");
 	window.location.replace("index.html");
 }
-
-
-/*
-//Former function body: Better structured, but does randomly not work
-{
-	var tmpProjectIdRaw = document.getElementById("project.id");
-	var tmpProjectNameRaw = document.getElementById("project.name");
-	var tmpProjectId = tmpProjectIdRaw.value;
-	var tmpProjectName =tmpProjectNameRaw.value;
-	console.log("Insert into Database");												//For debugging purposes
-	database.transaction(function (tx) 
-	{ 
-		tx.executeSql(sqlInsertProjects, [tmpProjectId, tmpProjectName], function(tx, res) 
-		{
-			console.log("insertId: " + res.insertId + " -- probably inserted id");		//For debugging purposes
-			console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");		//For debugging purposes
-		}); 
-	});
-	console.log("Insert complete");														//For debugging purposes
-	window.location.replace("index.html");
-}
-*/
 

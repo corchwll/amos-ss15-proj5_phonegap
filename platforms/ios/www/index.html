@@ -33,20 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="panel-group text-center" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="projX" data-toggle="collapse" data-parent="#accordion" href="#projXbody" aria-expanded="true" aria-controls="collapseOne" onclick="startStop()">
-                                <h4 class="panel-title">
-                                    Project X
-                                </h4>
-                            </div>
-                            <div id="projXbody" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <input class="btn btn-default" id="counter" value="0:0:0" />
-                                    <button class="btn btn-danger" onclick="stop()"><span class="glyphicon glyphicon-stop"></span></button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="panel-group text-center" id="ProjectList" role="tablist" aria-multiselectable="true">
                     </div>
                 </div>
             </div>
@@ -58,10 +45,19 @@
                 <a href="createProject.html" class="btn btn-info btn-block"><span class="glyphicon glyphicon-plus"></span> add new project</a>
             </div>
         </div>
+
+        <!-- dev button to print entries of Sessions table to console -->
+        <div class="container">
+            <div class="form-group">
+                <button class="btn btn-default btn-block" onclick="printSessions()">print Sessions table to console</button>
+            </div>
+        </div>
         <script src="js/jquery-2.1.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="cordova.js"></script>
+        <script src="SQLitePlugin.js"></script>
         <script src="js/index.js"></script>
+        <script src="js/listProjects.js"></script>
         <script src="js/recordTime.js"></script>
 
     </body>
