@@ -3,10 +3,10 @@
     <preference name="loglevel" value="DEBUG" />
     <name>MobileTimeRecording</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        An Apache Cordova application for mobile time recording.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author href="https://github.com/corchwll/amos-ss15-proj5_phonegap">
+        AMOS Team 5 SS15
     </author>
     <content src="index.html" />
     <access origin="*" />
