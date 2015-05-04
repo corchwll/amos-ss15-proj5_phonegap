@@ -594,3 +594,31 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 2015-04-28 23:15:53.436 MobileTimeRecording[19414:626349] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/334C637F-5B2E-4A01-9608-B839E26BE49E/MobileTimeRecording.app/www/index.html
 2015-04-28 23:15:53.456 MobileTimeRecording[19414:626349] Reusing existing database connection for db name mtr.db
 2015-04-28 23:15:53.456 MobileTimeRecording[19414:626349] Good news: SQLite is thread safe!
+2015-05-04 20:43:07.659 MobileTimeRecording[20276:537181] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/3B400367-5A65-4936-8EEC-23628564D9CD/Library/Cookies/Cookies.binarycookies
+2015-05-04 20:43:07.899 MobileTimeRecording[20276:537181] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-04 20:43:07.900 MobileTimeRecording[20276:537181] Multi-tasking -> Device: YES, App: YES
+2015-05-04 20:43:07.915 MobileTimeRecording[20276:537181] Unlimited access to network resources
+2015-05-04 20:43:07.923 MobileTimeRecording[20276:537181] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-05-04 20:43:08.421 MobileTimeRecording[20276:537181] Resetting plugins due to page load.
+2015-05-04 20:43:08.556 MobileTimeRecording[20276:537181] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/90E3DBF5-38AD-4017-8653-61B311CAEC51/MobileTimeRecording.app/www/index.html
+2015-05-04 20:43:08.578 MobileTimeRecording[20276:537181] Initializing SQLitePlugin
+2015-05-04 20:43:08.578 MobileTimeRecording[20276:537181] Detected docs path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/3B400367-5A65-4936-8EEC-23628564D9CD/Documents
+2015-05-04 20:43:08.579 MobileTimeRecording[20276:537181] Detected Library path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/3B400367-5A65-4936-8EEC-23628564D9CD/Library
+2015-05-04 20:43:08.579 MobileTimeRecording[20276:537181] no cloud sync at path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/3B400367-5A65-4936-8EEC-23628564D9CD/Library/LocalDatabase
+2015-05-04 20:43:08.579 MobileTimeRecording[20276:537181] open full db path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/3B400367-5A65-4936-8EEC-23628564D9CD/Library/LocalDatabase/mtr.db
+2015-05-04 20:43:08.587 MobileTimeRecording[20276:537181] Good news: SQLite is thread safe!
+2015-05-04 20:44:03.950 MobileTimeRecording[20276:537181] Resetting plugins due to page load.
+2015-05-04 20:44:04.158 MobileTimeRecording[20276:537181] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/90E3DBF5-38AD-4017-8653-61B311CAEC51/MobileTimeRecording.app/www/createProject.html
+2015-05-04 20:44:04.235 MobileTimeRecording[20276:537181] Reusing existing database connection for db name mtr.db
+2015-05-04 20:44:04.236 MobileTimeRecording[20276:537181] Good news: SQLite is thread safe!
+2015-05-04 20:44:24.553 MobileTimeRecording[20276:537181] Resetting plugins due to page load.
+2015-05-04 20:44:24.617 MobileTimeRecording[20276:537181] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/90E3DBF5-38AD-4017-8653-61B311CAEC51/MobileTimeRecording.app/www/index.html
+2015-05-04 20:44:24.640 MobileTimeRecording[20276:537181] Reusing existing database connection for db name mtr.db
+2015-05-04 20:44:24.640 MobileTimeRecording[20276:537181] Good news: SQLite is thread safe!
