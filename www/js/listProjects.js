@@ -3,20 +3,27 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 var database = null;
 
-/* When Cordova is ready database is opened (at first time, database is created) */
+/* 
+function onDeviceReady 
+When Cordova is ready database is opened (at first time, tables and views are created).
+Then the stored projects are listed.
+*/
 function onDeviceReady()
 {
-  openDb();
-  createTablesAndViews();
-  listProjects();
+ 	openDb();
+ 	createTablesAndViews();
+ 	listProjects();
 }
 
+/*
+function openDb
+Opens the sqlite database.
+ */
 function openDb()
 {
-
 	/* open database (without icloud backup -> location: 2) */
-  database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});				
-  console.log("Database opened");	//For debugging purposes
+ 	database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});				
+  	console.log("Database opened");	//For debugging purposes
 }
 
 /* SQL Queries */
@@ -33,6 +40,10 @@ var sqlSelectAllSessions = "SELECT * FROM Sessions";
 
 var sqlSelectAllProjectsWithTimes = "SELECT Projects.id, Projects.name, Aggregated_Times.aggregated_time FROM Projects LEFT JOIN Aggregated_Times ON Projects.id = Aggregated_Times.project_id";
 
+/*
+function onError
+Prints error message to console output if a sqlite error occurs.
+ */
 function onError(tx, err)
 {
 	console.log('Database error: ' + err.message);
@@ -77,7 +88,7 @@ function listProjects()
 		console.log("the time: " + row.aggregated_time);
 
 		return '<div class="panel panel-default">' +
-			'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="startStop(' + row.id + ')">' +
+			'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="">' +
 				'<h4 class="panel-title">' +
 					row.name +
 				'</h4>' +
@@ -85,7 +96,9 @@ function listProjects()
 			'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
 				'<div class="form-group">' +
 					'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
+					'<button class="btn btn-success" onclick="startStop(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
 					'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
+					'<button class="btn btn-info" onclick="addSession(' + row.id + ')"><span class="glyphicon glyphicon-plus"></span></button>' +
 				'</div>' +	
 			'</div>' +
 		'</div>';
@@ -117,9 +130,9 @@ function printSessions()
 	database.transaction(function (tx) {tx.executeSql(sqlSelectAllSessions, [], function (tx, results) 
 	{
 		var len = results.rows.length;
-    console.log("Sessions table: " + len + " rows found.");
-    for (var i=0; i<len; i++){
-        console.log("Row = " + i + " ID = " + results.rows.item(i).id + " | project_id =  " + results.rows.item(i).project_id + " | timestamp_start =  " + results.rows.item(i).timestamp_start + " | timestamp_stop =  " + results.rows.item(i).timestamp_stop);
-    }
+	console.log("Sessions table: " + len + " rows found.");
+	for (var i=0; i<len; i++){
+		console.log("Row = " + i + " ID = " + results.rows.item(i).id + " | project_id =  " + results.rows.item(i).project_id + " | timestamp_start =  " + results.rows.item(i).timestamp_start + " | timestamp_stop =  " + results.rows.item(i).timestamp_stop);
+	}
 	}, onError);});
 }

@@ -1,14 +1,27 @@
 /* Wait for device API to load */
 document.addEventListener("deviceready", onDeviceReady, false);
 
-var database;
+var database = null;
 
-/* When Cordova is ready database is opened (at first time, database is created) */
+/* 
+function onDeviceReady
+When Cordova is ready database is opened (at first time, tables are created).
+*/
 function onDeviceReady()
 {
+ 	openDb();
+ 	createTables();
+}
+
+/*
+function openDb
+Opens the sqlite database
+ */
+function openDb()
+{
 	/* open database (without icloud backup -> location: 2) */
-  database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});				
-  console.log("Database opened");													//For debugging purposes
+ 	database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});				
+  console.log("Database opened");	//For debugging purposes
 }
 
 /* SQL Queries */
@@ -19,6 +32,14 @@ var sqlCreateTableSessions = "CREATE TABLE IF NOT EXISTS Sessions (id INTEGER PR
 
 var sqlInsertProjects = "INSERT INTO Projects (id, name) VALUES (?, ?)";
 
+/*
+function onError
+Prints error message to console output if a sqlite error occurs.
+ */
+function onError(tx, err)
+{
+	console.log('Database error: ' + err.message);
+}
 
 /* 
 function initDatabase 
@@ -27,7 +48,7 @@ Ensures that database is initialized and contains the required tables.
 function initDatabase() 
 {
 	createTables();
-	console.log("Database initilized");													//For debugging purposes
+	console.log("Database initilized");	//For debugging purposes
 }
 
 /* 
@@ -36,8 +57,11 @@ Creates the required tables for the database.
  */
 function createTables()
 {
-	database.transaction(function (tx) {tx.executeSql(sqlCreateTableProjects, [])});
-	database.transaction(function (tx) {tx.executeSql(sqlCreateTableSessions, [])});
+	database.transaction(function (tx) 
+	{
+		tx.executeSql(sqlCreateTableProjects, []);
+		tx.executeSql(sqlCreateTableSessions, []);
+	});
 }
 
 /* 
@@ -46,18 +70,20 @@ Reads the data which the user has entered into the app and inserts it into the d
 */
 function insertProject()
 {
-	console.log('insert button pressed');
-	var tmpProjectIdRaw = document.getElementById("project.id");
-	var tmpProjectNameRaw = document.getElementById("project.name");
-	console.log("Insert into Database" + tmpProjectIdRaw.value +  ' ' + tmpProjectNameRaw.value);
-	var tmpProjectId = tmpProjectIdRaw.value;
-	var tmpProjectName =tmpProjectNameRaw.value;
-	console.log("Inserted into Database");
-	database.transaction(function (tx) { tx.executeSql(sqlInsertProjects, [tmpProjectId, tmpProjectName], function(tx, res) {
-           console.log("insertId: " + res.insertId + " -- probably 1");
-           console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-       }); });
+	var id = document.getElementById("project.id");
+	var name = document.getElementById("project.name");
+	console.log("Insert into Database" + id.value +  ' ' + name.value);
+
+	database.transaction(function (tx) 
+	{ 
+		tx.executeSql(sqlInsertProjects, [id.value, name.value], function(tx, rs)
+		{
+			console.log("insertId: " + rs.insertId);
+			console.log("rowsAffected: " + rs.rowsAffected + " -- should be 1");
+    }, onError); 
+	});
+
 	console.log("Insert complete");
-	window.location.replace("index.html");
+	window.location = "index.html";
 }
 
