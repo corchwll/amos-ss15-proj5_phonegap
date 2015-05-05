@@ -929,3 +929,35 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 2015-05-05 10:58:52.515 MobileTimeRecording[30017:640891] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/2E787D95-612D-415D-AD45-DA5245C71347/MobileTimeRecording.app/www/index.html
 2015-05-05 10:58:52.524 MobileTimeRecording[30017:640891] Reusing existing database connection for db name mtr.db
 2015-05-05 10:58:52.524 MobileTimeRecording[30017:640891] Good news: SQLite is thread safe!
+2015-05-05 11:09:49.146 MobileTimeRecording[31061:645982] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0D26C99A-79DB-4487-A5CA-B4147A7309AC/Library/Cookies/Cookies.binarycookies
+2015-05-05 11:09:49.237 MobileTimeRecording[31061:645982] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-05 11:09:49.237 MobileTimeRecording[31061:645982] Multi-tasking -> Device: YES, App: YES
+2015-05-05 11:09:49.238 MobileTimeRecording[31061:645982] Unlimited access to network resources
+2015-05-05 11:09:49.344 MobileTimeRecording[31061:645982] Resetting plugins due to page load.
+2015-05-05 11:09:49.409 MobileTimeRecording[31061:645982] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/D487F7DD-AFE7-4834-AE4E-52E9B56EB351/MobileTimeRecording.app/www/index.html
+2015-05-05 11:09:49.427 MobileTimeRecording[31061:645982] Initializing SQLitePlugin
+2015-05-05 11:09:49.427 MobileTimeRecording[31061:645982] Detected docs path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0D26C99A-79DB-4487-A5CA-B4147A7309AC/Documents
+2015-05-05 11:09:49.427 MobileTimeRecording[31061:645982] Detected Library path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0D26C99A-79DB-4487-A5CA-B4147A7309AC/Library
+2015-05-05 11:09:49.427 MobileTimeRecording[31061:645982] no cloud sync at path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0D26C99A-79DB-4487-A5CA-B4147A7309AC/Library/LocalDatabase
+2015-05-05 11:09:49.427 MobileTimeRecording[31061:645982] open full db path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0D26C99A-79DB-4487-A5CA-B4147A7309AC/Library/LocalDatabase/mtr.db
+2015-05-05 11:09:49.428 MobileTimeRecording[31061:645982] Good news: SQLite is thread safe!
+2015-05-05 11:12:17.751 MobileTimeRecording[31208:647575] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0220FBFC-1D16-4B89-BEDA-760F457299E0/Library/Cookies/Cookies.binarycookies
+2015-05-05 11:12:17.830 MobileTimeRecording[31208:647575] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-05 11:12:17.830 MobileTimeRecording[31208:647575] Multi-tasking -> Device: YES, App: YES
+2015-05-05 11:12:17.831 MobileTimeRecording[31208:647575] Unlimited access to network resources
+2015-05-05 11:12:17.935 MobileTimeRecording[31208:647575] Resetting plugins due to page load.
+2015-05-05 11:12:18.001 MobileTimeRecording[31208:647575] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/7760B342-0964-4F7F-B13A-F55BB6C8E26E/MobileTimeRecording.app/www/index.html
+2015-05-05 11:12:18.019 MobileTimeRecording[31208:647575] Initializing SQLitePlugin
+2015-05-05 11:12:18.019 MobileTimeRecording[31208:647575] Detected docs path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0220FBFC-1D16-4B89-BEDA-760F457299E0/Documents
+2015-05-05 11:12:18.019 MobileTimeRecording[31208:647575] Detected Library path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0220FBFC-1D16-4B89-BEDA-760F457299E0/Library
+2015-05-05 11:12:18.020 MobileTimeRecording[31208:647575] no cloud sync at path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0220FBFC-1D16-4B89-BEDA-760F457299E0/Library/LocalDatabase
+2015-05-05 11:12:18.020 MobileTimeRecording[31208:647575] open full db path: /Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Data/Application/0220FBFC-1D16-4B89-BEDA-760F457299E0/Library/LocalDatabase/mtr.db
+2015-05-05 11:12:18.020 MobileTimeRecording[31208:647575] Good news: SQLite is thread safe!
+2015-05-05 11:13:28.805 MobileTimeRecording[31208:647575] Resetting plugins due to page load.
+2015-05-05 11:13:28.867 MobileTimeRecording[31208:647575] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/7760B342-0964-4F7F-B13A-F55BB6C8E26E/MobileTimeRecording.app/www/createProject.html
+2015-05-05 11:13:28.896 MobileTimeRecording[31208:647575] Reusing existing database connection for db name mtr.db
+2015-05-05 11:13:28.896 MobileTimeRecording[31208:647575] Good news: SQLite is thread safe!
+2015-05-05 11:13:30.230 MobileTimeRecording[31208:647575] Resetting plugins due to page load.
+2015-05-05 11:13:30.287 MobileTimeRecording[31208:647575] Finished load of: file:///Users/matze/Library/Developer/CoreSimulator/Devices/BEBAFA46-3E23-4469-B057-EC073A97F44C/data/Containers/Bundle/Application/7760B342-0964-4F7F-B13A-F55BB6C8E26E/MobileTimeRecording.app/www/index.html
+2015-05-05 11:13:30.305 MobileTimeRecording[31208:647575] Reusing existing database connection for db name mtr.db
+2015-05-05 11:13:30.305 MobileTimeRecording[31208:647575] Good news: SQLite is thread safe!

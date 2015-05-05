@@ -19,9 +19,8 @@ Opens the sqlite database
  */
 function openDb()
 {
-	/* open database (without icloud backup -> location: 2) */
- 	database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});				
-  console.log("Database opened");	//For debugging purposes
+    /* open database (without icloud backup -> location: 2; use the built-in Android database classes -> androidDatabaseImplementation: 2 */
+    database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2, androidDatabaseImplementation: 2});
 }
 
 /* SQL Queries */

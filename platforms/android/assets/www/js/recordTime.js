@@ -5,14 +5,34 @@ Functions demand an already initialized database!
 /* Wait for device API to load */
 document.addEventListener("deviceready", onDeviceReady, false);
 
-var database;
+var database = null;
 
-/* When Cordova is ready database is opened (at first time, database is created) */
+/* 
+function onDeviceReady
+When Cordova is ready database is opened.
+*/
 function onDeviceReady()
 {
-    /* open database (without icloud backup -> location: 2) */
-  database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2});              
-  console.log("Database opened");                                                   //For debugging purposes
+    openDb();
+}
+
+/*
+function openDb
+Opens the sqlite database
+ */
+function openDb()
+{
+    /* open database (without icloud backup -> location: 2; use the built-in Android database classes -> androidDatabaseImplementation: 2 */
+    database = window.sqlitePlugin.openDatabase({name: 'mtr.db', location : 2, androidDatabaseImplementation: 2});
+}
+
+/*
+function onError
+Prints error message to console output if a sqlite error occurs.
+ */
+function onError(tx, err)
+{
+    console.log('Database error: ' + err.message);
 }
 
 /* SQL Queries */
@@ -115,10 +135,13 @@ function formatTime(unformattedTime)
 function starttimeDb(startTime, projectId)
 {
     var startTimeSeconds = Math.floor(startTime/1000);
-    database.transaction(function (tx) {tx.executeSql(sqlInsertSession, [projectId, startTimeSeconds], function(tx, res) {
-       console.log("insertId: " + res.insertId + " --");
-       console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-   }); });
+    database.transaction(function(tx)
+    {
+        tx.executeSql(sqlInsertSession, [projectId, startTimeSeconds], function(tx, res)
+        {
+            console.log("StartTime inserted in database");
+        }, onError); 
+    });
 }
 
 /*
@@ -132,9 +155,16 @@ function stoptimeDb(projectId)
     var stopSeconds = Math.floor(stopTime/1000);
     
    
-   database.transaction(function (tx) {tx.executeSql(sqlUpdateSession, [stopSeconds, projectId], function(tx, res) {
-       //console.log("insertId: " + res.insertId + " --");
-       //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
-   }); });
-   console.log("Session completed");
+    database.transaction(function(tx)
+    {
+        tx.executeSql(sqlUpdateSession, [stopSeconds, projectId], function(tx, res) 
+        {
+            console.log("StopTime inserted in database");
+
+            /* reset counter */
+            counter.value = "0:0:0";
+            
+            console.log("Session completed");
+        }, onError); 
+    });
 }
