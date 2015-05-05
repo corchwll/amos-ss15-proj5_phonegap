@@ -100,7 +100,7 @@ function listProjects()
 					'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
 					'<button class="btn btn-success" onclick="start(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
 					'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
-					'<button class="btn btn-info" onclick="addSession(' + row.id + ')"><span class="glyphicon glyphicon-plus"></span></button>' +
+					'<button class="btn btn-info" onclick="addSessionForProject(&quot;' + row.id + '&quot;, &quot;' + row.name + '&quot;)"><span class="glyphicon glyphicon-plus"></span></button>' +
 				'</p>' +	
 			'</div>' +
 		'</div>';
@@ -123,6 +123,16 @@ function listProjects()
 	{
 		tx.executeSql(sqlSelectAllProjectsWithTimes, [], render, onError);
 	});
+}
+
+/*
+function addSessionForProject
+This function locally stores the information on which project the user chooses in order to add a session for the project. Furthermore, the function forwards after the storage process to the required page.
+*/
+function addSessionForProject(projectId, projectName) {
+	window.sessionStorage.setItem("projectId", projectId);
+	window.sessionStorage.setItem("projectName", projectName);
+	window.location = "addSession.html";
 }
 
 /*

@@ -74,14 +74,12 @@ function createProfile()
 
 	var currentTimestamp = Math.floor(Date.now() / 1000);
 	
-	console.log("Insert into Database");
-	
 	database.transaction(function(tx)
 	{
 		tx.executeSql(sqlInsertUser, [id.value, forename.value, surname.value, weeklyWorkingTime.value, vacationTime.value, currentOverTime.value, currentVacationTime.value, currentTimestamp], function(tx, rs)
 		{
 		   console.log("Insert complete");
-		   window.location = "index.html";
+		   window.location = "index.html?style=success&message=Hello%20" + forename.value + "%20" + surname.value + ".%20%20Registration%20was%20successfull!";
     }, onError); 
 	});
 }
