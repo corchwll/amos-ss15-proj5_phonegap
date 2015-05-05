@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="de.fau.cs.osr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://phonegap.com/ns/1.0">
+    <feature name="SQLitePlugin">
+        <param name="wp-package" value="SQLitePlugin" />
+    </feature>
     <name>MobileTimeRecording</name>
     <description>
         An Apache Cordova/Phonegap application for mobile time recording.
@@ -10,7 +13,4 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="BackupWebStorage" value="local" />
-    <feature name="SQLitePlugin">
-        <param name="wp-package" value="SQLitePlugin" />
-    </feature>
 </widget>
