@@ -47,11 +47,18 @@
         </div>
 
         <!-- dev button to print entries of Sessions table to console -->
-        <div class="container">
+        <div class="container" style="padding-top: 400px">
             <div class="form-group">
                 <button class="btn btn-default btn-block" onclick="printSessions()">print Sessions table to console</button>
             </div>
         </div>
+        <!-- dev button to drop all projects from the database -->
+        <div class="container">
+            <div class="form-group">
+                <button class="btn btn-danger btn-block" onclick="dropProjects()">DROP ALL PROJECTS</button>
+            </div>
+        </div>
+
         <script src="js/jquery-2.1.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="cordova.js"></script>

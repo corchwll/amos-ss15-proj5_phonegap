@@ -36,6 +36,8 @@ var sqlCreateViewTimes = "CREATE VIEW IF NOT EXISTS Aggregated_Times AS SELECT p
 
 var sqlSelectAllSessions = "SELECT * FROM Sessions";
 
+var sqlDropAllProjects = "DELETE FROM Projects";
+
 /* WHERE timestamp_stop != 0 AND timestamp_start != 0 AND timestamp_stop IS NOT NULL AND timestamp_start IS NOT NULL GROUP BY project_id"; */
 
 var sqlSelectAllProjectsWithTimes = "SELECT Projects.id, Projects.name, Aggregated_Times.aggregated_time FROM Projects LEFT JOIN Aggregated_Times ON Projects.id = Aggregated_Times.project_id";
@@ -94,12 +96,12 @@ function listProjects()
 				'</h4>' +
 			'</div>' +
 			'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
-				'<div class="form-group">' +
+				'<p>' +
 					'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
 					'<button class="btn btn-success" onclick="startStop(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
 					'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
 					'<button class="btn btn-info" onclick="addSession(' + row.id + ')"><span class="glyphicon glyphicon-plus"></span></button>' +
-				'</div>' +	
+				'</p>' +	
 			'</div>' +
 		'</div>';
 	};
@@ -109,7 +111,7 @@ function listProjects()
 		var rowOutput = '';
 		var projectList = document.getElementById("ProjectList");
 		var len = rs.rows.length;
-		for (var i = 0; i < len; i++)
+		for(var i = 0; i < len; i++)
 		{
 			 rowOutput += renderProject(rs.rows.item(i));
 		}
@@ -127,12 +129,32 @@ function listProjects()
 /* dev function for printing the Sessions table to the console log */
 function printSessions()
 {
-	database.transaction(function (tx) {tx.executeSql(sqlSelectAllSessions, [], function (tx, results) 
+	database.transaction(function(tx)
 	{
-		var len = results.rows.length;
-	console.log("Sessions table: " + len + " rows found.");
-	for (var i=0; i<len; i++){
-		console.log("Row = " + i + " ID = " + results.rows.item(i).id + " | project_id =  " + results.rows.item(i).project_id + " | timestamp_start =  " + results.rows.item(i).timestamp_start + " | timestamp_stop =  " + results.rows.item(i).timestamp_stop);
-	}
-	}, onError);});
+		tx.executeSql(sqlSelectAllSessions, [], function (tx, results) 
+		{
+			var len = results.rows.length;
+			console.log("Sessions table: " + len + " rows found.");
+			for(var i = 0; i < len; i++)
+			{
+				console.log("Row = " + i + " ID = " + results.rows.item(i).id + " | project_id =  " + results.rows.item(i).project_id + " | timestamp_start =  " + results.rows.item(i).timestamp_start + " | timestamp_stop =  " + results.rows.item(i).timestamp_stop);
+			}
+		}, onError);
+	});
+}
+
+/* dev function for dropping all projects from the database */
+function dropProjects()
+{
+	database.transaction(function(tx) 
+	{
+		tx.executeSql(sqlDropAllProjects, [], function(tx, results) 
+		{
+			var len = results.rows.length;
+			for(var i = 0; i < len; i++)
+			{
+				console.log("Row: " + i + " ID: " + results.rows.item(i).id + " Name: " + results.rows.item(i).name + "DROPPED!");
+			}
+		}, onError);
+	});
 }
