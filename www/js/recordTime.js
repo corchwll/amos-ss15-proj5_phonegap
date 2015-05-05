@@ -50,14 +50,14 @@ var sqlUpdateSession = "UPDATE Sessions SET timestamp_stop = ? WHERE project_id 
 /* state whether timer is running or not */
 var state = 0;
 var currentDate;
-//var stopTime;
 var counter;
 var refresh;
 
 /*
- The behaviour of function startStop depends on the current internal state. The function either starts the timer, stops the timer or resets the internal state, if the timer was stopped by function stop.
- */
-function startStop(projectId)
+function start
+The function expects the project id of the project it should start as parameter. If the project is not already running, the timer gets startet and an respective database entry is made, using the function starttimeDb.
+*/
+function start(projectId)
 {
     var startDate = new Date();
     var startTime = startDate.getTime();
@@ -68,33 +68,19 @@ function startStop(projectId)
         state = 1;
         timer(startTime, projectId);
         starttimeDb(startTime, projectId);
-    } else if(state === 1)
-    {
-        state = 0;
-        stoptimeDb(projectId);
-    } else if(state === 2)
-    {
-        state = 0;
     }
 }
 
 /*
- Function stop only stops the timer and, thus, is meant for the stop-button.
- If timer was stopped already by function stop or function startStop, it does not change the state.
- If timer is running, it changes the internal state to 2, in order to mark the stoppage with the stop function/button.
- */
+function stop
+The function expects the project id of the project it should stop as parameter. If the project is currently running, the timer gets stopped and an respective database entry is made, using the function stoptimeDb.
+*/
 function stop(projectId)
 {
-    if(state === 0)
+    if(state === 1)
     {
         state = 0;
-    } else if(state === 1)
-    {
-        state = 2;
         stoptimeDb(projectId);
-    } else if(state === 2)
-    {
-        state = 2;
     }
 }
 

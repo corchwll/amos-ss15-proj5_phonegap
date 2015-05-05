@@ -98,7 +98,7 @@ function listProjects()
 			'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
 				'<p>' +
 					'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
-					'<button class="btn btn-success" onclick="startStop(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
+					'<button class="btn btn-success" onclick="start(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
 					'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
 					'<button class="btn btn-info" onclick="addSession(' + row.id + ')"><span class="glyphicon glyphicon-plus"></span></button>' +
 				'</p>' +	
