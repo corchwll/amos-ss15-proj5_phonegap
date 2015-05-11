@@ -112,3 +112,20 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.glyphicon-class {
+    display: block;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.row.navbar-row {
+    margin-bottom: 40px;
+}
+
+.btn-group {
+    width: 100%;
+}
+.btn-group-3 a.btn {
+    width: 33.3%;
+}
