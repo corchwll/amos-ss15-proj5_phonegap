@@ -26,9 +26,20 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script>
+            // include Navbar
+            $(function()
+            {
+                $("#includeNavbar").load("navbar.html");
+            });
+        </script>
         <title>Create a new project</title>
     </head>
     <body>
+        <!-- Navbar -->
+        <div class="container" id="includeNavbar"></div>
+        <!-- Create project container -->
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -68,7 +79,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/jquery-2.1.3.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="cordova.js"></script>
         <script src="SQLitePlugin.js"></script>
