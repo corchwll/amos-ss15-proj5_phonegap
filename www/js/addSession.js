@@ -101,6 +101,6 @@ function addSession()
 		  }, onError); 
 		});
 	} else {
-		window.location = "index.html?style=danger&message=An%20Error%20occured%20while%20adding%20a%20session%20for%20" + projectName;
+		window.location = "index.html?style=danger&message=Negative%20times%20are%20not%20allowed";
 	}
 }
