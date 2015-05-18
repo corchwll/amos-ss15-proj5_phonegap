@@ -126,7 +126,9 @@ function listProjects()
 		if(0 === row.is_displayed) 
 		{
 			return '';
-		} else if (0 === row.is_used) {
+		} else if (1 === row.id || 2 === row.id || 3 === row.id) {
+			if(0 === row.is_used) 
+			{
 			return '<div class="panel panel-default">' +
 				'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="">' +
 					'<h4 class="panel-title">' +
@@ -140,22 +142,40 @@ function listProjects()
 				'</div>' +
 			'</div>';
 
+			} else {
+				return '<div class="panel panel-default">' +
+					'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="">' +
+						'<h4 class="panel-title">' +
+							row.name +
+						'</h4>' +
+					'</div>' +
+					'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
+						'<p>' +
+							'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
+							'<button class="btn btn-success" onclick="start(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
+							'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
+							'<button class="btn btn-info" onclick="addSessionForProject(&quot;' + row.id + '&quot;, &quot;' + row.name + '&quot;)"><span class="glyphicon glyphicon-plus"></span></button>' +
+						'</p>' +	
+					'</div>' +
+				'</div>';
+			}
 		} else {
-			return '<div class="panel panel-default">' +
-				'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="">' +
-					'<h4 class="panel-title">' +
-						row.name +
-					'</h4>' +
-				'</div>' +
-				'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
-					'<p>' +
-						'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
-						'<button class="btn btn-success" onclick="start(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
-						'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
-						'<button class="btn btn-info" onclick="addSessionForProject(&quot;' + row.id + '&quot;, &quot;' + row.name + '&quot;)"><span class="glyphicon glyphicon-plus"></span></button>' +
-					'</p>' +	
-				'</div>' +
-			'</div>';
+				return '<div class="panel panel-default">' +
+					'<div class="panel-heading" role="tab" id="' + row.id + '" data-toggle="collapse" data-parent="#ProjectList" href="#' + row.id + 'body" aria-expanded="true" aria-controls="collapseOne" onclick="">' +
+						'<h4 class="panel-title">' +
+							row.name +
+						'</h4>' +
+					'</div>' +
+					'<div id="' + row.id + 'body" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">' +
+						'<p>' +
+							'<input class="btn btn-default" id="' + row.id + 'counter" value="0:0:0" />' +
+							'<button class="btn btn-success" onclick="start(' + row.id + ')"><span class="glyphicon glyphicon-play"></span></button>' +
+							'<button class="btn btn-danger" onclick="stop(' + row.id + ')"><span class="glyphicon glyphicon-stop"></span></button>' +
+							'<button class="btn btn-info" onclick="addSessionForProject(&quot;' + row.id + '&quot;, &quot;' + row.name + '&quot;)"><span class="glyphicon glyphicon-plus"></span></button>' +
+							'<button class="btn btn-danger" onclick="deleteProject(' + row.id +')"><span class="glyphicon glypicon-trash"></span></button>' +
+						'</p>' +	
+					'</div>' +
+				'</div>';
 		}
 	};
 
