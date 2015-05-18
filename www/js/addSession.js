@@ -101,6 +101,6 @@ function addSession()
 		  }, onError); 
 		});
 	} else {
-		window.location = "index.html?style=danger&message=Negative%20times%20are%20not%20allowed";
+		window.location = "index.html?style=danger&message=negative%20times%20are%20not%20allowed";
 	}
 }
