@@ -16,7 +16,7 @@ function onDeviceReady()
 /*
 function openDb
 Opens the sqlite database
- */
+*/
 function openDb()
 {
     /* open database (without icloud backup -> location: 2; use the built-in Android database classes -> androidDatabaseImplementation: 2 */
@@ -30,6 +30,42 @@ var sqlCreateTableProjects = "CREATE TABLE IF NOT EXISTS Projects (id INTEGER PR
 var sqlCreateTableSessions = "CREATE TABLE IF NOT EXISTS Sessions (id INTEGER PRIMARY KEY AUTOINCREMENT, project_id INTEGER, timestamp_start INTEGER, timestamp_stop INTEGER)";
 
 var sqlInsertProjects = "INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, 1, 1, 0)";
+
+/*
+Adds method to validator in order to be able to check regular expressions
+*/
+$.validator.addMethod("pattern", function(value, element, regexpr) 
+{          
+	return regexpr.test(value);
+});  
+
+/*
+Uses jquery validation plugin to validate input fields
+*/
+$( "form" ).validate(
+{
+	rules: 
+	{
+		projectId:
+		{
+			pattern: /^\d{5}$/
+		}
+	},
+    messages: 
+    {
+        projectId: 
+        {
+        	required: "please fill out every field",
+        	pattern: "Your personal ID must consist of 5 numbers"
+        },
+        name: "please fill out every field"
+    },
+    focusInvalid: false,
+    submitHandler: function() 
+    {
+        insertProject();         
+    }
+});
 
 /*
 function onError
