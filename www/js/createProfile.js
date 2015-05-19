@@ -41,6 +41,51 @@ var sqlSelectUser = "SELECT * FROM User";
 
 var sqlCountUser = "SELECT count(*) AS row_count FROM User";
 
+/*
+Uses jquery validation plugin to validate input fields
+*/
+$( "form" ).validate({
+    messages: {
+        id: "please fill out every field",
+        forename: "please fill out every field",
+        surname: "please fill out every field",
+        weekly_working_time: "please fill out every field",
+        total_vacation_time: "please fill out every field",
+        current_overtime: "please fill out every field",
+        current_vacation_time: "please fill out every field"
+    },
+    focusInvalid: false,
+    submitHandler: function() {
+        createProfile();         
+    }
+});
+
+
+
+/*
+Event listener for customized notification if user does not fill out every required field.
+*/
+document.querySelector("form").document.addEventListener("DOMContentLoaded", function() 
+{
+	console.log("DOMContentLoaded!!");
+    var elements = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < elements.length; i++) 
+		{
+        elements[i].oninvalid = function(e) 
+		{
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) 
+			{
+                e.target.setCustomValidity("please fill out every field");
+            }
+        };
+        elements[i].oninput = function(e) 
+		{
+            e.target.setCustomValidity("");
+        };
+    }
+});
+
 /* 
 function createTables
 Creates the required tables for the database.
