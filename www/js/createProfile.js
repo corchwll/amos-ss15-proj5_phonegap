@@ -44,18 +44,62 @@ var sqlCountUser = "SELECT count(*) AS row_count FROM User";
 /*
 Uses jquery validation plugin to validate input fields
 */
-$( "form" ).validate({
-    messages: {
+$( "form" ).validate(
+{
+	rules: 
+	{
+		weekly_working_time:
+		{
+			number: true,
+			range: [10, 50]
+		},
+		total_vacation_time:
+		{
+			number: true,
+			range: [0, 40]
+		},
+		current_overtime:
+		{
+			number: true
+		},
+		current_vacation_time:
+		{
+			number: true,
+			min: 0
+		}
+	},
+    messages: 
+    {
         id: "please fill out every field",
         forename: "please fill out every field",
         surname: "please fill out every field",
-        weekly_working_time: "please fill out every field",
-        total_vacation_time: "please fill out every field",
-        current_overtime: "please fill out every field",
-        current_vacation_time: "please fill out every field"
+        weekly_working_time: 
+        { 
+        	required: "please fill out every field",
+        	number: "please check your inputs",
+        	range: "please check your inputs"
+        },
+        total_vacation_time:
+        { 
+        	required: "please fill out every field",
+        	number: "please check your inputs",
+        	range: "please check your inputs"
+        },
+        current_overtime:
+        { 
+        	required: "please fill out every field",
+        	number: "please check your inputs"
+        },
+        current_vacation_time:
+        { 
+        	required: "please fill out every field",
+        	number: "please check your inputs",
+        	min: "please check your inputs"
+        }
     },
     focusInvalid: false,
-    submitHandler: function() {
+    submitHandler: function() 
+    {
         createProfile();         
     }
 });
