@@ -7,7 +7,7 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
 
 	self.init = function() {
 		self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
-		//self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
+		// self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
 
 		angular.forEach(DB_CONFIG.tables, function(table) {
 			var columns = [];
@@ -64,6 +64,7 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['1', 'Illness', 1, 0, 0]);
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['2', 'Training', 1, 1, 0]);
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['3', 'Holiday', 1, 0, 0]);
+                DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['4', 'Office', 1, 1, 0]);
             }
         });
     };
