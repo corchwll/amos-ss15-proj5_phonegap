@@ -6,8 +6,9 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
 	self.db = null;
 
 	self.init = function() {
-		// self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
-		self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
+        /* for debug purposes comment sqlitePlugin and uncomment openDatabase */
+		self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
+		// self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
 
 		angular.forEach(DB_CONFIG.tables, function(table) {
 			var columns = [];
