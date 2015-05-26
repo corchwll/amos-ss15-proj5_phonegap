@@ -6,8 +6,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
 	self.db = null;
 
 	self.init = function() {
-		self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
-		// self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
+		// self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
+		self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
 
 		angular.forEach(DB_CONFIG.tables, function(table) {
 			var columns = [];
@@ -155,6 +155,13 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
         return DB.query('SELECT * FROM Sessions WHERE id = ?', [id])
         .then(function(result){
             return DB.fetch(result);
+        });
+    };
+
+    self.getByProjectId = function(projectId) {
+        return DB.query('SELECT * FROM Sessions WHERE project_id = ?', [projectId])
+        .then(function(result){
+            return DB.fetchAll(result);
         });
     };
 

@@ -11,6 +11,12 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 		});
 	};
 
+	$scope.updateSessions = function() {
+		Sessions.getByProjectId($routeParams.projectId).then(function(sessions) {
+			$scope.sessions = sessions;
+		});
+	}
+
 	$scope.addSession = function(projectId) {
 		$location.path('/editSession/' + projectId);
 	};
@@ -32,8 +38,7 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    var startTime = startDate.getTime();
 
 	    /* Start counter if it is not already running */
-	    if(state === 0)
-	    {
+	    if(state === 0) {
 	        state = 1;
 	        timer(startTime, projectId);
 	        starttimeDb(startTime, projectId);
@@ -88,6 +93,7 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 
 	    Sessions.addStop(session).then(function() {
 	    	$scope.counter = '00:00:00';
+	    	$scope.updateSessions();
 	    });
 	};
 
