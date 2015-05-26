@@ -3,6 +3,9 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
 .controller('AddProjectController', function($scope, Projects, $location, ngNotify, $timeout){
 	
 	$scope.addProject = function(project) {
+		// convert date to unix timestamp
+		project.date = Date.parse(project.date)/1000;
+
 	  Projects.add(project).then(function() {
 	  	ngNotify.set(project.name + ' successfully added', {
 	  			type: 'success',
