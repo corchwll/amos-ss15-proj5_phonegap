@@ -1,0 +1,18 @@
+<div class="scrollable">
+	<div class="scrollable-content section" ng-init="getProject()">
+		<div ui-content-for="title">
+			<span>{{title}}</span>
+		</div>
+		<div ui-content-for="navbarAction">
+      <button class="btn" ng-click="addSession(project.id)">add session</button>
+    </div>
+    <div ng-show="project.is_used === 1"class="text-center">
+			<i class="glyphicon glyphicon-play session-icon text-primary" ng-click="start(project.id)"></i>	
+			<i class="glyphicon glyphicon-stop session-icon text-primary" ng-click="stop(project.id)"></i>
+			<div>
+				<p class="timer">{{counter}}</p>
+			</div>
+    </div>
+
+	</div>
+</div>

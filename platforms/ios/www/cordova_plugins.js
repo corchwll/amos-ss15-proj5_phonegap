@@ -11,6 +11,7 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "cordova-plugin-whitelist": "1.0.0",
     "io.litehelpers.cordova.sqlite": "0.7.7"
 }
 // BOTTOM OF METADATA

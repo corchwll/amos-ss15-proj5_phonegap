@@ -1,0 +1,56 @@
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div ui-content-for="title">
+			<span>Create a new session</span>
+		</div>
+		<form novalidate name="form" ng-submit="addSession(session)">
+			<fieldset>
+				<div class="form-group">
+					<label>Date</label>
+					<input type="text" class="hidden"
+			      datetimepicker
+			      datetimepicker-options="{
+			       	format: 'YYYY/MM/DD',
+			        inline: true
+			      }"
+			      name="date"
+			      ng-model="session.date">
+				</div>
+
+				<div class="form-group">
+					<label>Begin of working time</label>
+					<input type="text" class="hidden"
+			      datetimepicker
+			      datetimepicker-options="{
+			       	format: 'HH:mm',
+							inline: true
+			      }"
+			      name="startTime"
+			      ng-model="session.startTime">
+				</div>
+
+				<div class="form-group">
+					<label>End of working time</label>
+					<input type="text" class="hidden"
+			      datetimepicker
+			      datetimepicker-options="{
+			       	format: 'HH:mm',
+			        inline: true
+						}"
+			      name="stopTime"
+			      ng-model="session.stopTime">
+				</div>
+			</fieldset>
+			<div ui-content-for="navbarAction">
+		    <button ng-disabled="form.$invalid" class="btn" ng-click="addSession(session)">
+		      Save
+		    </button>
+		  </div>
+			<div>
+		    <button ng-disabled="form.$invalid" class="btn btn-primary btn-block" type="submit">
+		      Save
+		    </button>
+		  </div>
+		</form>
+	</div>
+</div>

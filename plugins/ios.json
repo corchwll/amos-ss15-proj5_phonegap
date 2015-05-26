@@ -18,6 +18,9 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "de.fau.cs.osr"
+        },
         "io.litehelpers.cordova.sqlite": {
             "PACKAGE_NAME": "de.fau.cs.osr"
         }

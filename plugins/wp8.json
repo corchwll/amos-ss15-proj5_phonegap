@@ -18,8 +18,11 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "{99e01fe0-03be-11e5-a425-4d1966712b51}"
+        },
         "io.litehelpers.cordova.sqlite": {
-            "PACKAGE_NAME": "{365266f0-f30a-11e4-a7ba-6b462548b100}"
+            "PACKAGE_NAME": "{99e01fe0-03be-11e5-a425-4d1966712b51}"
         }
     },
     "dependent_plugins": {}

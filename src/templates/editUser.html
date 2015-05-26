@@ -1,0 +1,112 @@
+<div class="scrollable">
+	<div class="scrollable-content section" ng-init="getUser()">
+		<div ui-content-for="title">
+			<span>Edit profile</span>
+		</div>
+		<form novalidate name="form" ng-submit="editProfile(editUser)">
+			<fieldset>
+				<!-- Personal ID input-->
+				<div class="form-group">
+					<label>Personal ID</label>
+					<input class="form-control" name="profileID" type="text" placeholder="Please enter the personal ID" ng-model="editUser.employee_id" ng-pattern="/^\d{5}$/" integer required/>
+					<p class="help-block" ng-show="form.profileID.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.profileID.$error.integer">
+						Your personal ID must consist of 5 numbers
+					</p>
+					<p class="help-block" ng-show="form.profileID.$error.pattern">
+						Your personal ID must consist of 5 numbers
+					</p>
+				</div>
+				<!-- First name input-->
+				<div class="form-group">
+					<label>First name</label>
+					<input class="form-control" name="firstname" type="text" placeholder="Please enter your first name" ng-model="editUser.firstname" required/>
+					<p class="help-block" ng-show="form.firstname.$error.required">
+						please fill out every field
+					</p>
+				</div>
+				<!-- Last name input-->
+				<div class="form-group">
+					<label>Last name</label>
+					<input class="form-control" name="lastname" type="text" placeholder="Please enter your last name" ng-model="editUser.lastname" required/>
+					<p class="help-block" ng-show="form.lastname.$error.required">
+						please fill out every field
+					</p>
+				</div>
+				<!-- Weekly Working Time input-->
+				<div class="form-group">
+					<label>Weekly working time</label>
+					<div class="input-group">
+						<input class="form-control" name="weekly_working_time" type="number" placeholder="Please enter your weekly working time" ng-model="editUser.weekly_working_time" min="10" max="50" integer required/><span class="input-group-addon">hours</span>
+					</div>
+					<p class="help-block" ng-show="form.weekly_working_time.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.weekly_working_time.$error.number">
+						please check your inputs
+					</p>
+					<p class="help-block" ng-show="form.weekly_working_time.$error.min || form.weekly_working_time.$error.max">
+						please check your inputs
+					</p>
+				</div>
+				<!-- Vacation Time input-->
+				<div class="form-group">
+					<label>Vacation time</label>
+					<div class="input-group">
+						<input class="form-control" name="total_vacation_time" type="number" placeholder="Please enter your total vacation time" ng-model="editUser.total_vacation_time" min="0" max="40" integer required/><span class="input-group-addon">days</span>
+					</div>
+					<p class="help-block" ng-show="form.total_vacation_time.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.total_vacation_time.$error.number">
+						please check your inputs
+					</p>
+					<p class="help-block" ng-show="form.total_vacation_time.$error.min || form.total_vacation_time.$error.max">
+						please check your inputs
+					</p>
+				</div>
+				<!-- Current Overtime Hours input-->
+				<div class="form-group">
+					<label>Current overtime hours</label>
+					<div class="input-group">
+						<input class="form-control" name="current_overtime" type="number" placeholder="Please enter your current overtime" ng-model="editUser.current_overtime" integer required/><span class="input-group-addon">hours</span>
+					</div>
+					<p class="help-block" ng-show="form.current_overtime.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.current_overtime.$error.number">
+						please check your inputs
+					</p>
+				</div>
+				<!-- Current Vacation Days input-->
+				<div class="form-group">
+					<label>Current vacation days</label>
+					<div class="input-group">
+						<input class="form-control" name="current_vacation_time" type="number" placeholder="Please enter your current vacation days" ng-model="editUser.current_vacation_time" min="0" integer required/><span class="input-group-addon">days</span>
+					</div>
+					<p class="help-block" ng-show="form.current_vacation_time.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.current_vacation_time.$error.number">
+						please check your inputs
+					</p>
+					<p class="help-block" ng-show="form.current_vacation_time.$error.min">
+						please check your inputs
+					</p>
+				</div>
+			</fieldset>
+			<div ui-content-for="navbarAction">
+		    <button ng-disabled="form.$invalid" class="btn" ng-click="editProfile(editUser)">
+		      Save
+		    </button>
+		  </div>
+			<div>
+		    <button ng-disabled="form.$invalid" class="btn btn-primary btn-block" type="submit">
+		      Save
+		    </button>
+		  </div>
+		</form>
+	</div>
+</div>

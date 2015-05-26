@@ -1,0 +1,41 @@
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div ui-content-for="title">
+			<span>Add new project</span>
+		</div>
+		<form novalidate name="form" ng-submit="addProject(project)">
+			<fieldset>
+				<div class="form-group">
+					<label>Project ID</label>
+					<input class="form-control" name="projectID" type="text" placeholder="Please enter the project ID" ng-model="project.id" ng-pattern="/^\d{5}$/" integer required/>
+					<p class="help-block" ng-show="form.projectID.$error.required">
+						please fill out every field
+					</p>
+					<p class="help-block" ng-show="form.projectID.$error.integer">
+						Your project ID must consist of 5 numbers
+					</p>
+					<p class="help-block" ng-show="form.projectID.$error.pattern">
+						Your project ID must consist of 5 numbers
+					</p>
+				</div>
+				<div class="form-group">
+					<label>Project name</label>
+					<input class="form-control" name="name" type="text" placeholder="Please enter the project name" ng-model="project.name" required/>
+					<p class="help-block" ng-show="form.name.$error.required">
+						please fill out every field
+					</p>
+				</div>
+			</fieldset>
+			<div ui-content-for="navbarAction">
+		    <button ng-disabled="form.$invalid" class="btn" ng-click="addProject(project)">
+		      Save
+		    </button>
+		  </div>
+			<div>
+		    <button ng-disabled="form.$invalid" class="btn btn-primary btn-block" type="submit">
+		      Save
+		    </button>
+		  </div>
+		</form>
+	</div>
+</div>

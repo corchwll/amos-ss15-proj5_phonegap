@@ -1,0 +1,37 @@
+<section class="section container-fluid">
+  <div class="scrollabale-content">
+    <div ui-content-for="navbarAction">
+      <button class="btn" ng-click="addProject()">add Project</button>
+    </div>
+    <div ui-content-for="navbarMenu">
+    	<button class="btn" ng-model="delete" ng-click="delete = !delete">Edit</button>
+    </div>
+		<div ng-init="updateProjects()" class="list-group">
+			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1}">
+				<button ng-disabled="project.id === '1' || project.id === '2' || project.id === '3'" class="btn btn-danger" ng-show="delete" ng-click="deleteOverlay(project)">DELETE</button>{{project.name}}
+				<i class="glyphicon glyphicon-chevron-right pull-right"></i>
+			</a>
+	</div>
+</section>
+
+<!-- overlay template -->
+<script type="text/ng-template" id="modal.html">
+	<div class="modal modal-overlay">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button class="close"
+	                ng-click="close('Cancel')" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Delete confirmation</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>Are you sure?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button ng-click="close('Yes')" data-dismiss="modal" class="btn btn-primary">Yes</button>
+	        <button ng-click="close('Cancel')" data-dismiss="modal" class="btn btn-default">No</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</script>
