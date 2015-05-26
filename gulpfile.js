@@ -71,7 +71,8 @@ var gulp           = require('gulp'),
     ngFilesort     = require('gulp-angular-filesort'),
     streamqueue    = require('streamqueue'),
     rename         = require('gulp-rename'),
-    path           = require('path');
+    path           = require('path'),
+    license        = require('gulp-license');
 
 
 /*================================================
@@ -195,6 +196,7 @@ gulp.task('less', function () {
     }))
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
+    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeRecording', organization: 'AMOS Team 5 SS15'}))
     .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
@@ -217,6 +219,7 @@ gulp.task('js', function() {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
+    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeRecording', organization: 'AMOS Team 5 SS15'}))
     .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 
