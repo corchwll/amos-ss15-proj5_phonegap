@@ -84,8 +84,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
     };
 
     self.add = function(project) {
-        var parameters = [project.id, project.name, 1, 1, 0];
-        return DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", parameters);
+        var parameters = [project.id, project.name, 1, 1, 0, project.timestamp_final_date];
+        return DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived, timestamp_final_date) VALUES (?, ?, ?, ?, ?, ?)", parameters);
     };
 
     self.remove = function(id) {

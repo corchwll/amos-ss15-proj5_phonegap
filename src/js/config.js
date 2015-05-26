@@ -10,7 +10,8 @@ angular.module('MobileTimeRecording.config', [])
 				{name: 'name', type: 'TEXT'},
 				{name: 'is_displayed', type: 'INTEGER'},
 				{name: 'is_used', type: 'INTEGER'},
-				{name: 'is_archived', type: 'INTEGER'}
+				{name: 'is_archived', type: 'INTEGER'},
+				{name: 'timestamp_final_date', type: 'INTEGER'}
 			]
 		},
 		{
