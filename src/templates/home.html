@@ -7,7 +7,7 @@
     	<button class="btn" ng-model="delete" ng-click="delete = !delete">Edit</button>
     </div>
 		<div ng-init="updateProjects()" class="list-group">
-			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1}">
+			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1 } | orderBy: orderProjects">
 				<button ng-disabled="project.id === '1' || project.id === '2' || project.id === '3' || project.id === '4'" class="btn btn-danger" ng-show="delete" ng-click="deleteOverlay(project)">DELETE</button>{{project.name}}
 				<i class="glyphicon glyphicon-chevron-right pull-right"></i>
 			</a>
