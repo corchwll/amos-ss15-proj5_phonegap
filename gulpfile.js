@@ -72,7 +72,8 @@ var gulp           = require('gulp'),
     streamqueue    = require('streamqueue'),
     rename         = require('gulp-rename'),
     path           = require('path'),
-    license        = require('gulp-license');
+    license        = require('gulp-license'),
+    karma          = require('karma').server;
 
 
 /*================================================
@@ -115,6 +116,19 @@ gulp.task('connect', function() {
   } else {
     throw new Error('Connect is not configured');
   }
+});
+
+/*=============================================
+=            Run Karma tests                  =
+=============================================*/
+
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function() {
+    done();
+  });
 });
 
 
