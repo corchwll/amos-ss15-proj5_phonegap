@@ -64,7 +64,7 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
             if(projects.length < 1) {
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['00001', 'Holiday', 1, 0, 0]);
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['00002', 'Illness', 1, 0, 0]);
-                DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['00003', 'Ofiice', 1, 1, 0]);
+                DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['00003', 'Office', 1, 1, 0]);
                 DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived) VALUES (?, ?, ?, ?, ?)", ['00004', 'Training', 1, 1, 0]);
             }
         });
