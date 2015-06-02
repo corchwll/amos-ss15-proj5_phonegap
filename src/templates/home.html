@@ -1,18 +1,25 @@
-<section class="section container-fluid">
+<div ui-content-for="navbarAction">
+  <button class="btn" ng-click="addProject()">add Project</button>
+</div>
+<div ui-content-for="navbarMenu">
+	<button class="btn" ng-model="delete" ng-click="delete = !delete">Edit</button>
+</div>
+
+<div class="scrollable">
+	<input
+	    ng-model="searchProjects"
+	    type="search"
+	    class="form-control scrollable-header"
+	    placeholder="Search.." />
   <div class="scrollabale-content">
-    <div ui-content-for="navbarAction">
-      <button class="btn" ng-click="addProject()">add Project</button>
-    </div>
-    <div ui-content-for="navbarMenu">
-    	<button class="btn" ng-model="delete" ng-click="delete = !delete">Edit</button>
-    </div>
 		<div ng-init="updateProjects()" class="list-group">
-			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1 } | orderBy: orderProjects">
+			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1 } | orderBy: orderProjects | filter: searchProjects">
 				<button ng-disabled="project.id === '00001' || project.id === '00002' || project.id === '00003' || project.id === '00004'" class="btn btn-danger" ng-show="delete" ng-click="deleteOverlay(project)">DELETE</button>{{project.name}}
 				<i class="glyphicon glyphicon-chevron-right pull-right"></i>
 			</a>
+		</div>
 	</div>
-</section>
+</div>
 
 <!-- overlay template -->
 <script type="text/ng-template" id="modal.html">
