@@ -17,13 +17,14 @@ module.exports = function(config) {
     files: [
       './bower_components/moment/moment.js',
       './bower_components/angular/angular.js',
+      './bower_components/angular-mocks/angular-mocks.js',
       './bower_components/jquery/dist/jquery.js',
       './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/bootstrap/dist/js/bootstrap.js',
       {pattern: 'src/js/**/*.js', included: false},
-      {pattern: 'test/**/*.js', included: false}
+      {pattern: 'test/unit/**/*.js', included: false}
     ],
 
 
