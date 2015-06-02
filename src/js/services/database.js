@@ -95,7 +95,7 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
 
     self.archive = function(id) {
         return DB.query("UPDATE Projects SET is_displayed = 0, is_archived = 1 WHERE id = (?)", [id]);
-    }
+    };
     
     self.update = function(origProj, editProj) {
         var parameters = [editProj.id, editProj.name, origProj.id];
@@ -181,9 +181,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
     	return DB.query("UPDATE Sessions SET timestamp_stop = (?) WHERE project_id = (?) AND timestamp_stop IS NULL", parameters);
     };
 
-    self.remove = function(session) {
-    	var parameters = [session.id];
-    	return DB.query("DELETE FROM Sessions WHERE id = (?)", parameters);
+    self.remove = function(id) {
+    	return DB.query("DELETE FROM Sessions WHERE id = (?)", [id]);
     };
     
     self.update = function(origSession, editSession) {
