@@ -13,13 +13,13 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
   };
 
   $scope.orderProjects = function(project) {
-    if(project.id === '1') {
+    if(project.id === '00001') {
       return -1;
-    } else if(project.id === '2') {
+    } else if(project.id === '00002') {
       return -1;
-    } else if(project.id === '3') {
+    } else if(project.id === '00003') {
       return -1;
-    } else if(project.id === '4') {
+    } else if(project.id === '00004') {
       return -1;
     } 
     return project.name;
