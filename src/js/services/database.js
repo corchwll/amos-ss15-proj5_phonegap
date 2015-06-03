@@ -159,6 +159,27 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
         });
     };
 
+    self.getHolidaySessions = function() {
+        return DB.query('SELECT * FROM Sessions WHERE project_id = ?', ['00001'])
+        .then(function(result) {
+            return DB.fetchAll(result);
+        });
+    };
+
+    self.getFirstStartTimestamp = function() {
+        return DB.query('SELECT MIN(timestamp_start) AS min_timestamp_start FROM Sessions')
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
+
+    self.getLastStopTimestamp = function() {
+        return DB.query('SELECT MAX(timestamp_stop) AS max_timestamp_stop FROM Sessions')
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
+
     self.getByProjectId = function(projectId) {
         return DB.query('SELECT * FROM Sessions WHERE project_id = ?', [projectId])
         .then(function(result){
