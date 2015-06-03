@@ -13,6 +13,7 @@ angular.module('MobileTimeRecording', [
   'MobileTimeRecording.controllers.EditSession',
   'MobileTimeRecording.controllers.CreateSession',
   'MobileTimeRecording.controllers.ViewProject',
+  'MobileTimeRecording.controllers.Dashboard',
   'MobileTimeRecording.services.Database'
 ])
 
@@ -46,6 +47,11 @@ angular.module('MobileTimeRecording', [
     .when('/editSession/:projectId/:sessionId', {
       templateUrl: 'editSession.html',
       controller: 'EditSessionController',
+      reloadOnSearch: false
+    })
+    .when('/dashboard', {
+      templateUrl: 'dashboard.html',
+      controller: 'DashboardController',
       reloadOnSearch: false
     })
   	.otherwise({
