@@ -34,8 +34,8 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 							stopDate = moment.unix(result.max_timestamp_stop);
 
 							amountOfHolidays = getHolidays(startDate, stopDate);
-							console.log(amountOfHolidays);
 							amountOfWorkdays = calculateWorkdays(startDate, stopDate);
+							console.log(amountOfWorkdays);
 							workingTimeSeconds = sumUpSessions(sessions);
 
 							hoursPerDay = weeklyWorkingTime / 5;
@@ -67,15 +67,16 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		var startWeekDay = moment(startDate).format("d");
 		//backup on which weekday the intervall stopped
 		var stopWeekDay = moment(stopDate).format("d");
-		var days;
-		var workDays;
+		var days = 0;
+		var workDays = 0;
 
 		//start interval on mondays
-		moment(startDate).subtract(startWeekDay, 'd').add(1, 'd');
+		startDate = moment(startDate).subtract(startWeekDay, 'd').add(1, 'd');
 		//end interval on mondays
-		moment(stopDate).subtract(stopWeekDay, 'd').add(1, 'd');
+		stopDate = moment(stopDate).subtract(stopWeekDay, 'd').add(1, 'd');
 
-		days = (stopDate - startDate) / (3600 * 24);
+		// days = (stopDate - startDate) / (3600 * 24);
+		days = stopDate.diff(startDate, 'days');
 		workDays = days * 5 / 7;
 
 		//if startWeekDay is sunday
@@ -87,8 +88,8 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		if(stopWeekDay === 0) {
 			stopWeekDay = 1;
 		}
-
-		return workDays - startWeekDay + stopWeekDay + 1;
+		
+		return parseInt(workDays) - parseInt(startWeekDay) + parseInt(stopWeekDay) + 1;
 	};
 
 	var getHolidays = function(startDate, stopDate) {
@@ -97,7 +98,6 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		if(moment(startDate).format("YYYY") === moment(stopDate).format("YYYY")) {
 			var holidays = getHolidaysForYear(moment(startDate).format("YYYY"));
 			amountOfHolidays = amountOfHolidaysBetween(holidays, startDate, stopDate);
-			console.log(amountOfHolidays);
 		} else if(moment(stopDate).format("YYYY") - moment(startDate).format("YYYY") === 1) {
 			var holidaysInStartYear1 = getHolidaysForYear(moment(startDate).format("YYYY"));
 			var holidaysInStopYear1 = getHolidaysForYear(moment(stopDate).format("YYYY"));
