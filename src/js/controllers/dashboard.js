@@ -25,24 +25,29 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 			User.all().then(function(user) {
 				weeklyWorkingTime = user[0].weekly_working_time;
 				currentOvertime = user[0].current_overtime;
+				if($.isEmptyObject(sessions)) {
+					$scope.overtime = currentOvertime;
+				} else {
+					Sessions.getFirstStartTimestamp().then(function(result) {
+						startDate = moment.unix(result.min_timestamp_start);
+						Sessions.getLastStopTimestamp().then(function(result) {
+							stopDate = moment.unix(result.max_timestamp_stop);
 
-				if(!$.isEmptyObject(sessions)) {
-					startDate = getFirstStart();
-					stopDate = getLastStop();
+							amountOfHolidays = getHolidays(startDate, stopDate);
+							console.log(amountOfHolidays);
+							amountOfWorkdays = calculateWorkdays(startDate, stopDate);
+							workingTimeSeconds = sumUpSessions(sessions);
 
-					amountOfHolidays = getHolidays(startDate, stopDate);
-					console.log(amountOfHolidays);
-					amountOfWorkdays = calculateWorkdays(startDate, stopDate);
-					workingTimeSeconds = sumUpSessions(sessions);
+							hoursPerDay = weeklyWorkingTime / 5;
 
-					hoursPerDay = weeklyWorkingTime / 5;
+							deptInSecs = (amountOfWorkdays - amountOfHolidays) * hoursPerDay * 3600;
 
-					deptInSecs = (amountOfWorkdays - amountOfHolidays) * hoursPerDay * 3600;
-
-					overTimeInHours = (workingTimeSeconds - deptInSecs) / 3600;
-				}
-					
-				$scope.overtime = currentOvertime + overTimeInHours;
+							overTimeInHours = (workingTimeSeconds - deptInSecs) / 3600;
+								
+							$scope.overtime = currentOvertime + overTimeInHours;
+						});
+					});
+				}			
 			});
 		});		
 	};
@@ -87,11 +92,11 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 	};
 
 	var getHolidays = function(startDate, stopDate) {
-		var amountOfHolidays;
+		var amountOfHolidays = 0;
 
 		if(moment(startDate).format("YYYY") === moment(stopDate).format("YYYY")) {
 			var holidays = getHolidaysForYear(moment(startDate).format("YYYY"));
-			amountOfHolidays += amountOfHolidaysBetween(holidays, startDate, stopDate);
+			amountOfHolidays = amountOfHolidaysBetween(holidays, startDate, stopDate);
 			console.log(amountOfHolidays);
 		} else if(moment(stopDate).format("YYYY") - moment(startDate).format("YYYY") === 1) {
 			var holidaysInStartYear1 = getHolidaysForYear(moment(startDate).format("YYYY"));
@@ -225,11 +230,11 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 	var amountOfHolidaysBetween = function(holidays, startDate, stopDate) {
 		var result = 0;
 
-		for(var i = 0; i < holidays.length; i++) {
-			if(moment(startDate).isBefore(holidays[i]) && moment(stopDate).isAfter(holidays[i])) {
+		angular.forEach(holidays, function(holiday) {
+			if(moment(startDate).isBefore(holiday) && moment(stopDate).isAfter(holiday)) {
 				result++;
 			}
-		}
+		});
 
 		return result;
 	};
