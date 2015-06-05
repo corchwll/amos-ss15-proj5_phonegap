@@ -3,10 +3,8 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 .controller('DashboardController', function($scope, Sessions, User, $q){
 
 	$scope.updateDashboard = function() {
-		$scope.overtime = getOvertime();
-		console.log($scope.overtime);
-		$scope.leftVacationDays = getLeftVacationDays();
-		console.log($scope.leftVacationDays);
+		getOvertime();
+		// $scope.leftVacationDays = getLeftVacationDays();
 
 	};
 
@@ -21,36 +19,40 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		var currentOvertime;
 		var deptInSecs;
 		var sessions;
+		
+		Sessions.all().then(function(result) {
+			sessions = result;
+			User.all().then(function(user) {
+				weeklyWorkingTime = user[0].weekly_working_time;
+				currentOvertime = user[0].current_overtime;
 
-		sessions = getAllSessions();
+				if(!$.isEmptyObject(sessions)) {
+					startDate = getFirstStart();
+					stopDate = getLastStop();
 
-		if(!$.isEmptyObject(sessions)) {
-			startDate = getFirstStart();
-			stopDate = getLastStop();
+					amountOfHolidays = getHolidays(startDate, stopDate);
+					console.log(amountOfHolidays);
+					amountOfWorkdays = calculateWorkdays(startDate, stopDate);
+					workingTimeSeconds = sumUpSessions(sessions);
 
-			amountOfHolidays = getHolidays(startDate, stopDate);
-			amountOfWorkdays = calculateWorkdays(startDate, stopDate);
-			workingTimeSeconds = sumUpSessions(sessions);
+					hoursPerDay = weeklyWorkingTime / 5;
 
-			weeklyWorkingTime = getWeeklyWorkingTime();
-			hoursPerDay = weeklyWorkingTime / 5;
+					deptInSecs = (amountOfWorkdays - amountOfHolidays) * hoursPerDay * 3600;
 
-			deptInSecs = (amountOfWorkdays - amountOfHolidays) * hoursPerDay * 3600;
-
-			overTimeInHours = (workingTimeSeconds - deptInSecs) / 3600;
-		}
-
-		currentOvertime = getCurrentOvertime();
-
-		return currentOvertime + overTimeInHours;
+					overTimeInHours = (workingTimeSeconds - deptInSecs) / 3600;
+				}
+					
+				$scope.overtime = currentOvertime + overTimeInHours;
+			});
+		});		
 	};
 
 	var sumUpSessions = function(sessions) {
-		var recordedTimeInSecs;
+		var recordedTimeInSecs = 0;
 
-		for(var i = 0; i < sessions.length; i++) {
-			recordedTimeInSecs += sessions[i].timestamp_stop - sessions[i].timestamp_start;
-		}
+		angular.forEach(sessions, function(session) {
+			recordedTimeInSecs += (session.timestamp_stop - session.timestamp_start);
+		});
 
 		return recordedTimeInSecs;
 	};
@@ -283,18 +285,6 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		return currentVacationTime - vacationInDays;
 	};
 
-	var getAllSessions = function() {
-		return function() {
-			var deferred = $q.defer();
-
-			Sessions.all().then(function(result) {
-				deferred.resolve(result);
-			});
-
-			return deferred.promise;
-		};
-	};
-
 	var getVacationSessions = function() {
 		var deferred = $q.defer();
 
@@ -311,8 +301,6 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		User.all().then(function(user) {
 			deferred.resolve(user[0].weekly_working_time);
 		});
-
-		console.log(deferred.promise);
 
 		return deferred.promise;
 	};
