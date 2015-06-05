@@ -92,6 +92,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		if(moment(startDate).format("YYYY") === moment(stopDate).format("YYYY")) {
 			var holidays = getHolidaysForYear(moment(startDate).format("YYYY"));
 			amountOfHolidays += amountOfHolidaysBetween(holidays, startDate, stopDate);
+			console.log(amountOfHolidays);
 		} else if(moment(stopDate).format("YYYY") - moment(startDate).format("YYYY") === 1) {
 			var holidaysInStartYear1 = getHolidaysForYear(moment(startDate).format("YYYY"));
 			var holidaysInStopYear1 = getHolidaysForYear(moment(stopDate).format("YYYY"));
@@ -116,26 +117,25 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 	var getHolidaysForYear = function(year) {
 		var holidays = getFixedHolidays(year);
 		var easterSunday = getEastern(year);
-		var tmpDate;
 
 		//Karfreitag
-		moment(easterSunday).subtract(2, 'days');
+		easterSunday = moment(easterSunday).subtract(2, 'days');
 		holidays.push(easterSunday);
 
 		//Ostermontag
-		moment(easterSunday).add(3, 'days');
+		easterSunday = moment(easterSunday).add(3, 'days');
 		holidays.push(easterSunday);
 
 		//Christi Himmelfahrt
-		moment(easterSunday).add(38, 'days');
+		easterSunday = moment(easterSunday).add(38, 'days');
 		holidays.push(easterSunday);
 
 		//Pfingstmontag
-		moment(easterSunday).add(11, 'days');
+		easterSunday = moment(easterSunday).add(11, 'days');
 		holidays.push(easterSunday);
 
 		//Fronleichnam
-		moment(easterSunday).add(10, 'days');
+		easterSunday = moment(easterSunday).add(10, 'days');
 		holidays.push(easterSunday);
 
 		return holidays;
@@ -145,42 +145,42 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		var fixedHolidays = [];
 		var tmpDate;
 		//Neujahrstag
-		moment(tmpDate).set({'year': year, 'month': 0, 'date': 1});
+		tmpDate = moment().set({'year': year, 'month': 0, 'date': 1});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//Heilige Drei Koenige
-		moment(tmpDate).set({'year': year, 'month': 0, 'date': 6});
+		tmpDate = moment().set({'year': year, 'month': 0, 'date': 6});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//Tag der Arbeit
-		moment(tmpDate).set({'year': year, 'month': 4, 'date': 1});
+		tmpDate = moment().set({'year': year, 'month': 4, 'date': 1});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//Maria Himmelfahrt
-		moment(tmpDate).set({'year': year, 'month': 7, 'date': 15});
+		tmpDate = moment().set({'year': year, 'month': 7, 'date': 15});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//Tag der deutschen Einheit
-		moment(tmpDate).set({'year': year, 'month': 9, 'date': 3});
+		tmpDate = moment().set({'year': year, 'month': 9, 'date': 3});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//Allerheiligen
-		moment(tmpDate).set({'year': year, 'month': 10, 'date': 1});
+		tmpDate = moment().set({'year': year, 'month': 10, 'date': 1});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//1. Weihnachtstag
-		moment(tmpDate).set({'year': year, 'month': 11, 'date': 25});
+		tmpDate = moment().set({'year': year, 'month': 11, 'date': 25});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
 		//2. Weihnachtstag
-		moment(tmpDate).set({'year': year, 'month': 11, 'date': 26});
+		tmpDate = moment().set({'year': year, 'month': 11, 'date': 26});
 		if(!isSaturday(tmpDate) && !isSunday(tmpDate)) {
 			fixedHolidays.push(tmpDate);
 		}
