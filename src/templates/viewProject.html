@@ -21,7 +21,7 @@
 		<div class="list-group" ng-init="updateSessions()">
 			<a class="list-group-item" href="" ng-repeat="session in sessions | orderBy: '-timestamp_start'">
 				<button class="btn btn-danger" ng-show="delete" ng-click="deleteOverlay(session)">DELETE</button>
-				{{session.timestamp_start*1000 | date: 'dd.MM.yyyy'}} | {{session.timestamp_start*1000 | date: 'HH:mm'}} | {{session.timestamp_stop*1000 | date: 'HH:mm'}}
+				{{session.timestamp_start*1000 | date: 'dd.MM.yyyy'}} | {{session.timestamp_start*1000 | date: 'HH:mm'}} | {{session.timestamp_stop*1000 | date: 'HH:mm'}} | {{calculateSessionDuration(session)}} 
 			</a>
 		</div>
 	</div>
