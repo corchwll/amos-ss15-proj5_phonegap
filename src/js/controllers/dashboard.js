@@ -4,7 +4,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 
 	$scope.updateDashboard = function() {
 		getOvertime();
-		// $scope.leftVacationDays = getLeftVacationDays();
+		getLeftVacationDays();
 
 	};
 
@@ -35,14 +35,13 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 
 							amountOfHolidays = getHolidays(startDate, stopDate);
 							amountOfWorkdays = calculateWorkdays(startDate, stopDate);
-							console.log(amountOfWorkdays);
 							workingTimeSeconds = sumUpSessions(sessions);
 
 							hoursPerDay = weeklyWorkingTime / 5;
 
 							deptInSecs = (amountOfWorkdays - amountOfHolidays) * hoursPerDay * 3600;
 
-							overTimeInHours = (workingTimeSeconds - deptInSecs) / 3600;
+							overTimeInHours = Math.floor((workingTimeSeconds - deptInSecs) / 3600);
 								
 							$scope.overtime = currentOvertime + overTimeInHours;
 						});
@@ -88,7 +87,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		if(stopWeekDay === 0) {
 			stopWeekDay = 1;
 		}
-		
+
 		return parseInt(workDays) - parseInt(startWeekDay) + parseInt(stopWeekDay) + 1;
 	};
 
@@ -97,7 +96,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 
 		if(moment(startDate).format("YYYY") === moment(stopDate).format("YYYY")) {
 			var holidays = getHolidaysForYear(moment(startDate).format("YYYY"));
-			amountOfHolidays = amountOfHolidaysBetween(holidays, startDate, stopDate);
+			amountOfHolidays += amountOfHolidaysBetween(holidays, startDate, stopDate);
 		} else if(moment(stopDate).format("YYYY") - moment(startDate).format("YYYY") === 1) {
 			var holidaysInStartYear1 = getHolidaysForYear(moment(startDate).format("YYYY"));
 			var holidaysInStopYear1 = getHolidaysForYear(moment(stopDate).format("YYYY"));
@@ -272,82 +271,24 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		var currentVacationTime;
 		var weeklyWorkingTime;
 
-		vacationSessions = getVacationSessions();
-
-		if(!$.isEmptyObject(vacationSessions)) {
-			vacationInSecs = sumUpSessions(vacationSessions);			
-		} else {
-			vacationInSecs = 0;
-		}
-
-		weeklyWorkingTime = getWeeklyWorkingTime();
-		hoursPerDay = weeklyWorkingTime / 5;
-
-		vacationInDays = vacationInSecs / (3600 * hoursPerDay);
-
-		currentVacationTime = getCurrentVacationTime();
-
-		return currentVacationTime - vacationInDays;
-	};
-
-	var getVacationSessions = function() {
-		var deferred = $q.defer();
-
 		Sessions.getHolidaySessions().then(function(result) {
-			deferred.resolve(result);
+			vacationSessions = result;
+
+			User.all().then(function(user) {
+				weeklyWorkingTime = user[0].weekly_working_time;
+				currentVacationTime = user[0].current_vacation_time;
+
+				if(!$.isEmptyObject(vacationSessions)) {
+					vacationInSecs = sumUpSessions(vacationSessions);			
+				} else {
+					vacationInSecs = 0;
+				}
+
+				hoursPerDay = weeklyWorkingTime / 5;
+				vacationInDays = vacationInSecs / (3600 * hoursPerDay);
+
+				$scope.leftVacationDays = currentVacationTime - vacationInDays;
+			});
 		});
-
-		return deferred.promise;
 	};
-
-	var getWeeklyWorkingTime = function() {
-		var deferred = $q.defer();
-
-		User.all().then(function(user) {
-			deferred.resolve(user[0].weekly_working_time);
-		});
-
-		return deferred.promise;
-	};
-
-	var getCurrentVacationTime = function() {
-		var deferred = $q.defer();
-		
-		User.all().then(function(user) {
-			deferred.resolve(user[0].current_vacation_time);
-		});
-
-		return deferred.promise;
-	};
-
-	var getCurrentOvertime = function() {
-		var deferred = $q.defer();
-		
-		User.all().then(function(user) {
-			deferred.resolve(user[0].current_overtime);
-		});
-
-		return deferred.promise;
-	};
-
-	var getFirstStart = function() {
-		var deferred = $q.defer();
-		
-		Sessions.getFirstStartTimestamp().then(function(result) {
-			deferred.resolve(result);
-		});
-
-		return deferred.promise;
-	};
-
-	var getLastStop = function() {
-		var deferred = $q.defer();
-		
-		Sessions.getLastStopTimestamp().then(function(result) {
-			deferred.resolve(result);
-		});
-
-		return deferred.promise;
-	};
-
 });
