@@ -1,3 +1,14 @@
 @import "mobile-angular-ui/src/less/mobile-angular-ui-desktop.less";
 @import "mixins.less";
 @import "variables.less";
+
+@media (max-width: 599px) {
+	/* Responsive style for navbar text*/
+	span.navbar-text {
+		height   : 1px;
+    width    : 1px;
+    position : absolute;
+    overflow : hidden;
+    top      : -1000px; 
+	}
+}
