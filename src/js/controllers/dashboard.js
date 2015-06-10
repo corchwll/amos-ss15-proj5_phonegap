@@ -1,11 +1,27 @@
 angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecording.services.Database'])
 
-.controller('DashboardController', function($scope, Sessions, User, $q){
+.controller('DashboardController', function($scope, Sessions, User, Projects, DummyMonth, $q, $timeout){
+
+	var x;
+	var xLength = 33;
+	var y;
+	var yLength = 100;
+	var times = []; // [days][projects]
+	var projectArray = [];
+
+	for(x = 0; x < xLength; x++) {
+		times[x] = [];
+		for(y = 0; y < yLength; y++) {
+			times[x][y] = 0;
+		}
+	}
 
 	$scope.updateDashboard = function() {
 		getOvertime();
 		getLeftVacationDays();
-
+		DummyMonth.populate();
+		generateCsv();
+		// getCsvFile();
 	};
 
 	var getOvertime = function() {
@@ -289,6 +305,65 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 
 				$scope.leftVacationDays = currentVacationTime - vacationInDays;
 			});
+		});
+	};
+
+	var generateCsv = function() {
+		User.all().then(function(user) {
+			var userFirstname = user[0].firstname;
+			var userLastname = user[0].lastname;
+			var month = moment().subtract(1, 'months').format('MM');
+			var year = moment().subtract(1, 'months').format('YYYY');
+			var daysInMonth = moment().subtract(1, 'months').endOf('month').format('D');
+			var start = year + '-' + month + '-' + '01';
+			var stop = year + '-' + month + '-' + daysInMonth;
+
+			Projects.all().then(function(projects) {
+				for(var i = 0; i < projects.length; i++) {
+					projectArray[i] = projects[i].id;
+					getProjectTimes(i, projects[i].id, start, stop);
+				}
+			});
+			$timeout(function() {
+
+				for(var j = 0; j < 33; j++) {
+					times[j].splice(projectArray.length, (times[j].length - projectArray.length));				
+				}
+
+				times.splice(daysInMonth + 2, (times.length + 2 - daysInMonth));
+
+				times[0] = [userFirstname, userLastname, month, year];
+				for(var k = 0 ; k < projectArray.length; k++) {
+					times[1][k] = projectArray[k];
+				}
+
+				var csv = Papa.unparse(times);
+				
+				console.log(csv);
+				sendCsvFile(csv);
+			}, 2000);
+		});
+	};
+
+	var getProjectTimes = function(i, projectId, start, stop) {
+		DummyMonth.projectTimes(projectId, start, stop).then(function(result) {
+			for(var k = 0; k < result.length; k++) {
+				if(!$.isEmptyObject(result[k])) {
+					times[parseInt(result[k].day)+1][i] = result[k].aggr_times;
+				}
+			}
+		});
+	};
+
+
+	var sendCsvFile = function(file) {
+		var csv = Papa.unparse(file);
+		console.log("Generated CSV-file: \n" + csv);
+		window.cordova.plugins.email.open({
+			to: 'hr@department.de',
+			subject: 'MobileTimeRecording CSV Export File',
+			body: 'Please download the csv file',
+			attachments: 'base64:export.csv//' + csv
 		});
 	};
 });

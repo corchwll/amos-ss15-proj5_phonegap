@@ -33,5 +33,6 @@ module.exports = function(config) {
   config.vendor.js.push('bower_components/moment/moment.js');
   config.vendor.js.push('bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
   config.vendor.js.push('bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.min.js');
+  config.vendor.js.push('bower_components/papaparse/papaparse.min.js');
   config.vendor.fonts.push('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*');
 };

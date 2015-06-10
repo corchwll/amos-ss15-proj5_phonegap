@@ -35,6 +35,13 @@ angular.module('MobileTimeRecording.config', [])
 				{name: 'current_overtime', type: 'INTEGER'},
 				{name: 'registration_date', type: 'INTEGER'}
 			]
+		},
+		{
+			name: 'DummyMonth',
+			columns: [
+				{name: 'day', type: 'TEXT PRIMARY KEY'},
+				{name: 'dummy', type: 'INTEGER'}
+			]
 		}
 	]
 });

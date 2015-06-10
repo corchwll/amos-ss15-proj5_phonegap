@@ -187,6 +187,13 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
         });
     };
 
+    self.getAccumulatedSessionfromDayByProjectId = function(date, projectId) {
+        return DB.query('SELECT sum(timestamp_stop - timestamp_start) AS working_time FROM Sessions WHERE date(timestamp_start, "unixepoch", "utc") = (?) AND project_id = (?)', [date, projectId])
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
+
     self.add = function(session) {
         var parameters = [session.project_id, session.timestamp_start, session.timestamp_stop];
         return DB.query("INSERT INTO Sessions (project_id, timestamp_start, timestamp_stop) VALUES (?, ?, ?)", parameters);
@@ -211,5 +218,70 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
     	return DB.query("UPDATE Sessions SET id = (?), project_id = (?), timestamp_start = (?), timestamp_stop = (?) WHERE id = (?)", parameters);
     };
     
+    return self;
+})
+
+// Table DummyMonth functions
+.factory('DummyMonth', function(Sessions, DB) {
+    var self = this;
+
+    self.all = function() {
+        return DB.query('SELECT * FROM DummyMonth')
+        .then(function(result){
+            return DB.fetchAll(result);
+        });
+    };
+
+    self.populate = function() {
+        self.all().then(function(dummys) {
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['01', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['02', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['03', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['04', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['05', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['06', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['07', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['08', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['09', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['10', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['11', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['12', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['13', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['14', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['15', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['16', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['17', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['18', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['19', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['20', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['21', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['22', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['23', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['24', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['25', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['26', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['27', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['28', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['29', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['30', 0]);
+            DB.query('INSERT INTO DummyMonth (day, dummy) VALUES (?, ?)', ['31', 0]);
+        });        
+    };
+
+    self.test = function() {
+        return DB.query('SELECT * FROM DummyMonth LEFT JOIN Sessions ON DummyMonth.day = Sessions.timestamp_start')
+        .then(function(result) {
+            console.log("heretest");
+            return DB.fetchAll(result);
+        });
+    };
+
+    self.projectTimes = function(projectId, start, stop) {
+        return DB.query('SELECT DummyMonth.day, Sessions.project_id, ifnull(sum(Sessions.timestamp_stop - Sessions.timestamp_start), 0) AS aggr_times FROM DummyMonth LEFT JOIN Sessions ON DummyMonth.day = strftime("%d", Sessions.timestamp_start, "unixepoch", "utc") WHERE Sessions.project_id = ? AND date(Sessions.timestamp_start, "unixepoch", "utc") >= ? AND date(Sessions.timestamp_stop, "unixepoch", "utc") <= ? GROUP BY DummyMonth.day, Sessions.project_id', [projectId, start, stop])
+        .then(function(result){
+            return DB.fetchAll(result);
+        });
+    };
+
     return self;
 });
