@@ -357,12 +357,14 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 
 	var sendCsvFile = function(file) {
 		var csv = Papa.unparse(file);
+		var encoded = window.btoa(csv);
 		console.log("Generated CSV-file: \n" + csv);
+		console.log(encoded);
 		window.cordova.plugins.email.open({
 			to: 'hr@department.de',
 			subject: 'MobileTimeRecording CSV Export File',
 			body: 'Please download the csv file',
-			attachments: 'base64:export.csv//' + csv
+			attachments: 'base64:export.csv//' + encoded
 		});
 	};
 });
