@@ -20,8 +20,10 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		getOvertime();
 		getLeftVacationDays();
 		DummyMonth.populate();
+	};
+
+	$scope.createCSV = function() {
 		generateCsv();
-		// getCsvFile();
 	};
 
 	var getOvertime = function() {
@@ -337,10 +339,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 					times[1][k] = projectArray[k];
 				}
 
-				var csv = Papa.unparse(times);
-				
-				console.log(csv);
-				sendCsvFile(csv);
+				sendCsvFile(times);
 			}, 2000);
 		});
 	};
