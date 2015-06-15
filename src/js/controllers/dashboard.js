@@ -289,7 +289,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 		var currentVacationTime;
 		var weeklyWorkingTime;
 
-		Sessions.getHolidaySessions().then(function(result) {
+		Sessions.getVacationSessions().then(function(result) {
 			vacationSessions = result;
 
 			User.all().then(function(user) {
