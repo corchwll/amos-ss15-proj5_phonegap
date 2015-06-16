@@ -68,16 +68,28 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	 * @param  projectId The 5 digit id of a project
 	 */
 	$scope.start = function(projectId) {
-	    var startDate = new Date();
-	    var startTime = startDate.getTime();
+    var startDate = new Date();
+    var startTime = startDate.getTime();
 
-	    /* Start counter if it is not already running */
-	    if(state === 0) {
-	        state = 1;
-	        timer(startTime, projectId);
-	        starttimeDb(startTime, projectId);
-	    }
-	};
+    /* Check for overlapping sessions */
+    Sessions.checkSimpleOverlapping(Math.floor(startTime/1000)).then(function(result) {
+    	if(result.overlappings === 0) {
+		    /* Start counter if it is not already running */
+		    if(state === 0) {
+		        state = 1;
+		        timer(startTime, projectId);
+		        starttimeDb(startTime, projectId);
+		    }
+  		} else {
+  			ngNotify.set('You have already recorded for this time', {
+  				type: 'error',
+  				position: 'top',
+  				duration: 3000
+  			});
+  		}
+    });
+  };
+
 
 	/**
 	 * This function stops the timer for a project specified by its id.
@@ -85,10 +97,29 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	 * @param  projectId The 5 digit id of a project
 	 */
 	$scope.stop = function(projectId) {
-	    if(state === 1) {
-	        state = 0;
-	        stoptimeDb(projectId);
-	    }
+    if(state === 1) {
+      var stopDate = new Date();
+   		var stopTime = stopDate.getTime();
+
+    	Sessions.currentSession(projectId).then(function(result) {
+    		Sessions.getById(result.currentSessionId).then(function(result2) {
+    			Sessions.checkFullOverlapping(result2.timestamp_start, stopTime).then(function(result3) {
+    				if(result3.overlappings === 0) {
+    					state = 0;
+       	 				stoptimeDb(projectId);
+    				} else {
+    					state = 0;
+		    			ngNotify.set('You have already recorded for this time', {
+							type: 'error',
+							position: 'top',
+							duration: 3000
+						});
+		    			Sessions.remove(result.currentSessionId);
+    				}
+    			});
+    		});
+    	});
+    }
 	};
 
 	/**
@@ -98,15 +129,15 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	 * @param   projectId The 5 digit id of a project
 	 */
 	var timer = function(startTime, projectId) {
-	    var timeDiff = new Date().getTime() - startTime;
+    var timeDiff = new Date().getTime() - startTime;
 
-	    if(state === 1) {
-	        // $scope.counter = formatTime(timeDiff);
-	        $scope.counter = moment.utc(timeDiff).format("HH:mm:ss");
-	        $timeout(function() {
-	        	timer(startTime, projectId);
-	        }, 10);
-	    }
+    if(state === 1) {
+        // $scope.counter = formatTime(timeDiff);
+        $scope.counter = moment.utc(timeDiff).format("HH:mm:ss");
+        $timeout(function() {
+        	timer(startTime, projectId);
+        }, 10);
+    }
 	};
 
 	/**
@@ -116,11 +147,11 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	 * @param   projectId The 5 digit id of a project
 	 */
 	var starttimeDb = function(startTime, projectId) {
-	    var session = {};
-	    session.timestamp_start = Math.floor(startTime/1000);
-	    session.project_id =  projectId;
-	    
-	    Sessions.addStart(session);
+    var session = {};
+    session.timestamp_start = Math.floor(startTime/1000);
+    session.project_id =  projectId;
+    
+    Sessions.addStart(session);
 	};
 
 	/**
@@ -129,15 +160,15 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	 * @param  projectId The 5 digit id of a project
 	 */
 	var stoptimeDb = function(projectId) {
-			var session = {};
-	    var stopTime = new Date().getTime();
-	    session.timestamp_stop = Math.floor(stopTime/1000);
-	    session.project_id =  projectId;
+		var session = {};
+    var stopTime = new Date().getTime();
+    session.timestamp_stop = Math.floor(stopTime/1000);
+    session.project_id =  projectId;
 
-	    Sessions.addStop(session).then(function() {
-	    	$scope.counter = '00:00:00';
-	    	$scope.updateSessions();
-	    });
+    Sessions.addStop(session).then(function() {
+    	$scope.counter = '00:00:00';
+    	$scope.updateSessions();
+    });
 	};
 
 });

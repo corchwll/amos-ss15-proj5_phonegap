@@ -22,16 +22,26 @@ angular.module('MobileTimeRecording.controllers.CreateSession', ['MobileTimeReco
 				duration: 3000
 			});
 		} else if(session.timestamp_start <= session.timestamp_stop) {
-			Sessions.add(session).then(function() {
-		  	ngNotify.set('Session successfully added', {
-		  			type: 'success',
-		  			position: 'top',
-		  			duration: 3000
-		  		});
-		  	$timeout(function() {
-		  		$(location).attr('href', '#/viewProject/' + session.project_id);
-		  	}, 3500);
-	  	});
+			Sessions.checkFullOverlapping(session.timestamp_start, session.timestamp_stop).then(function(result) {
+				if(result.overlappings === 0) {
+					Sessions.add(session).then(function() {
+					  	ngNotify.set('Session successfully added', {
+					  			type: 'success',
+					  			position: 'top',
+					  			duration: 3000
+					  		});
+					  	$timeout(function() {
+					  		$location.path('#/');
+					  	}, 4000);
+				  	});
+				} else {
+					ngNotify.set('You have already recorded for this time', {
+						type: 'error',
+						position: 'top',
+						duration: 3000
+					});
+				}
+			});
 		} else {
 			ngNotify.set('negative times are not allowed', {
 				type: 'error',

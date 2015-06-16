@@ -333,6 +333,43 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
     self.remove = function(id) {
     	return DB.query("DELETE FROM Sessions WHERE id = (?)", [id]);
     };
+
+    /**
+     * This function checks if a given timestamp represents a time during an already existing session in the database.
+     * 
+     * @param   timestamp A unix timestamp in seconds
+     */
+    self.checkSimpleOverlapping = function(timestamp) {
+        return DB.query("SELECT count(*) AS overlappings FROM Sessions WHERE timestamp_start < ? AND timestamp_stop > ?", [timestamp, timestamp])
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
+
+    /**
+     * This function checks if a given timeframe overlaps in any way with an already existing session in the database.
+     * 
+     * @param   startTimestamp A unix timestamp in seconds marking the beginning of the timeframe
+     * @param   stopTimestamp  A unix timestamp in seconds marking the end of the timeframe
+     */
+    self.checkFullOverlapping = function(startTimestamp, stopTimestamp) {
+        return DB.query("SELECT count(*) AS overlappings FROM Sessions WHERE (timestamp_start < ? AND timestamp_stop > ?) OR (timestamp_start < ? AND timestamp_stop > ?) OR (? < timestamp_start AND timestamp_start < ?) OR (? < timestamp_stop AND timestamp_stop < ?)", [startTimestamp, startTimestamp, stopTimestamp, stopTimestamp, startTimestamp, stopTimestamp, startTimestamp, stopTimestamp])
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
+
+    /**
+     * This function returns the latest started session of the project
+     * 
+     * @param  projectId A five digit id
+     */
+    self.currentSession = function(projectId) {
+        return DB.query("SELECT max(id) AS currentSessionId FROM Sessions WHERE project_id = ?", [projectId])
+        .then(function(result){
+            return DB.fetch(result);
+        });
+    };
     
     return self;
 })
