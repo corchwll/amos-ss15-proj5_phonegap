@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.services.Database'])
 
-.controller('MainController', function($scope, Projects, $location){
+.controller('MainController', function($scope, Projects){
   $scope.projects = [];
   $scope.project = null;
   
@@ -26,11 +26,11 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
   };
 
   $scope.viewProject = function(projectId) {
-    $location.path('/viewProject/' + projectId);
+    $(location).attr('href', '#/viewProject/' + projectId);
   };
 
   $scope.addProject = function() {
-  	$location.path('/addProject');
+    $(location).attr('href', '#/addProject');
   };
 
   $scope.deleteProject = function(project) {

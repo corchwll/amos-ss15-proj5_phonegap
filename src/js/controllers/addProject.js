@@ -13,7 +13,7 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
 	  			duration: 3000
 	  		});
 	  	$timeout(function() {
-	  		$location.path('#/');
+	  		$(location).attr('href', '#/');
 	  	}, 3500);
 	  });
   };

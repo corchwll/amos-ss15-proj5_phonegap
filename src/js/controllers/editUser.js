@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording.services.Database'])
 
-.controller('EditUserController', function($scope, User, $location, ngNotify, $timeout){
+.controller('EditUserController', function($scope, User, ngNotify, $timeout){
 	
 	var origUser = {};
 
@@ -25,7 +25,7 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 	  			duration: 3000
 	  		});
 	  		$timeout(function() {
-		  		$location.path('#/');
+		  		$(location).attr('href', '#/');
 		  	}, 3500);
 	  	});
 	  } else {
@@ -37,7 +37,7 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 	  			duration: 3000
 	  		});
 				$timeout(function() {
-	  			$location.path('#/');
+	  			$(location).attr('href', '#/');
 	  		}, 3500);
 	  	});
 	  }

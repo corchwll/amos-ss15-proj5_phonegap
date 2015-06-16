@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecording.services.Database'])
 
-.controller('ViewProjectController', function($scope, Projects, Sessions, $location, ngNotify, $timeout, $routeParams){
+.controller('ViewProjectController', function($scope, Projects, Sessions, ngNotify, $timeout, $routeParams){
 	
 	$scope.counter = '00:00:00';
 
@@ -18,7 +18,7 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	};
 
 	$scope.addSession = function(projectId) {
-		$location.path('/editSession/' + projectId);
+		$(location).attr('href', '#/editSession/' + projectId);
 	};
 
   $scope.calculateSessionDuration = function(session) {

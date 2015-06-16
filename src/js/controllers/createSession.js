@@ -24,7 +24,7 @@ angular.module('MobileTimeRecording.controllers.CreateSession', ['MobileTimeReco
 		  			duration: 3000
 		  		});
 		  	$timeout(function() {
-		  		$location.path('#/');
+		  		$(location).attr('href', '#/viewProject/' + session.project_id);
 		  	}, 3500);
 	  	});
 		} else {

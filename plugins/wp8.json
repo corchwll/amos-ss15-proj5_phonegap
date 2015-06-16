@@ -9,11 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"SQLitePlugin\"><param name=\"wp-package\" value=\"SQLitePlugin\" /></feature>",
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"wp-package\" value=\"EmailComposer\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"EmailComposer\"><param name=\"wp-package\" value=\"EmailComposer\" /></feature>",
+                            "xml": "<feature name=\"SQLitePlugin\"><param name=\"wp-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -23,13 +23,13 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "{99e01fe0-03be-11e5-a425-4d1966712b51}"
-        },
-        "io.litehelpers.cordova.sqlite": {
-            "PACKAGE_NAME": "{99e01fe0-03be-11e5-a425-4d1966712b51}"
+            "PACKAGE_NAME": "{559f7280-1445-11e5-8550-25bdec0c2d7b}"
         },
         "de.appplant.cordova.plugin.email-composer": {
-            "PACKAGE_NAME": "{99e01fe0-03be-11e5-a425-4d1966712b51}"
+            "PACKAGE_NAME": "{559f7280-1445-11e5-8550-25bdec0c2d7b}"
+        },
+        "io.litehelpers.cordova.sqlite": {
+            "PACKAGE_NAME": "{559f7280-1445-11e5-8550-25bdec0c2d7b}"
         }
     },
     "dependent_plugins": {}
