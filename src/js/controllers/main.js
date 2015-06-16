@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.services.Database'])
 
-.controller('MainController', function($scope, Projects, $location, ModalService){
+.controller('MainController', function($scope, Projects, $location){
   $scope.projects = [];
   $scope.project = null;
   
@@ -33,23 +33,8 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
   	$location.path('/addProject');
   };
 
-  $scope.deleteOverlay = function(project) {
-    ModalService.showModal({
-      templateUrl: 'modal.html',
-      controller: 'ModalController'
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        if(result === 'Yes') {
-          deleteProject(project.id);
-        } else {        
-          $scope.updateProjects();
-        }
-      });
-    });
-  };
-  var deleteProject = function(projectId) {
-    Projects.archive(projectId).then(function() {
+  $scope.deleteProject = function(project) {
+    Projects.archive(project.id).then(function() {
       $scope.updateProjects();
     });
   };

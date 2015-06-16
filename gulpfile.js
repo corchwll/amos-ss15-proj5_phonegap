@@ -7,7 +7,7 @@
 var config = {
   dest: 'www',
   cordova: true,
-  minify_images: true,
+  minify_images: false,
   
   vendor: {
     js: [
@@ -15,11 +15,18 @@ var config = {
       './bower_components/bootstrap/dist/js/bootstrap.min.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-route/angular-route.js',
-      './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js'
+      './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
+      './bower_components/ng-notify/dist/ng-notify.min.js',
+      './bower_components/moment/moment.js',
+      './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+      './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.min.js',
+      './bower_components/papaparse/papaparse.min.js',
+      './bower_components/angular-confirm-click/dist/confirmClick.js'
     ],
 
     fonts: [
-      './bower_components/font-awesome/fonts/fontawesome-webfont.*'
+      './bower_components/font-awesome/fonts/fontawesome-webfont.*',
+      './bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*'
     ]
   },
 

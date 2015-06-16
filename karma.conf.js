@@ -23,6 +23,8 @@ module.exports = function(config) {
       './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js',
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/bootstrap/dist/js/bootstrap.js',
+      './bower_components/ng-notify/dist/ng-notify.min.js',
+      './bower_components/angular-confirm-click/dist/confirmClick.js',
       'src/js/**/*.js',
       'test/unit/**/*.js'
     ],

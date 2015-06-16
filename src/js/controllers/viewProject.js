@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecording.services.Database'])
 
-.controller('ViewProjectController', function($scope, Projects, Sessions, $location, ngNotify, $timeout, $routeParams, ModalService){
+.controller('ViewProjectController', function($scope, Projects, Sessions, $location, ngNotify, $timeout, $routeParams){
 	
 	$scope.counter = '00:00:00';
 
@@ -21,30 +21,14 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 		$location.path('/editSession/' + projectId);
 	};
 
-	$scope.deleteOverlay = function(session) {
-    ModalService.showModal({
-      templateUrl: 'modal.html',
-      controller: 'ModalController'
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        if(result === 'Yes') {
-          deleteSession(session.id);
-        } else {
-          $scope.updateSessions();
-        }
-      });
-    });
-  };
-
   $scope.calculateSessionDuration = function(session) {
   	var start = moment.unix(session.timestamp_start);
   	var stop = moment.unix(session.timestamp_stop);
   	return moment.utc(stop.diff(start)).format("HH:mm");
   };
 
-  var deleteSession = function(sessionId) {
-    Sessions.remove(sessionId).then(function() {
+  $scope.deleteSession = function(session) {
+    Sessions.remove(session.id).then(function() {
       $scope.updateSessions();
     });
   };

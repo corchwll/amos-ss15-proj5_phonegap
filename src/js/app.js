@@ -6,7 +6,7 @@ angular.module('MobileTimeRecording', [
   'mobile-angular-ui.components.scrollable',
   'ngNotify',
   'datetimepicker',
-  'angularModalService',
+  'confirmClick',
   'MobileTimeRecording.controllers.Main',
   'MobileTimeRecording.controllers.AddProject',
   'MobileTimeRecording.controllers.EditUser',
