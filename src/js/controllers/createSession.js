@@ -6,6 +6,11 @@ angular.module('MobileTimeRecording.controllers.CreateSession', ['MobileTimeReco
 	$scope.session.startTime = '08:00';
 	$scope.session.stopTime = '16:00';
 	
+	/**
+	 * This function tests if a session is valid, if so, stores it into the database and shows a respective notification depending on the test.
+	 * 
+	 * @param  session Session object which contains the session data
+	 */
 	$scope.addSession = function(session) {
 		session.project_id = $routeParams.projectId;
 		session.timestamp_start = Date.parse(session.date + ", " + session.startTime)/1000;

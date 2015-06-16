@@ -4,6 +4,10 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	
 	$scope.counter = '00:00:00';
 
+	/**
+	 * This function loads a project into the view
+	 * 
+	 */
 	$scope.getProject = function() {
 		Projects.getById($routeParams.projectId).then(function(project) {
 			$scope.project = project;
@@ -11,22 +15,41 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 		});
 	};
 
+	/**
+	 * This function loads all sessions of a project into the view
+	 * 
+	 */
 	$scope.updateSessions = function() {
 		Sessions.getByProjectId($routeParams.projectId).then(function(sessions) {
 			$scope.sessions = sessions;
 		});
 	};
 
+	/**
+	 * This function forwards to the creation screen for sessions for a certain project
+	 * @param projectId The 5 digit id of a project
+	 */
 	$scope.addSession = function(projectId) {
 		$(location).attr('href', '#/editSession/' + projectId);
 	};
 
+	/**
+	 * This function computes the duration of a session depending on its start and end.
+	 * 
+	 * @param   session An object containing a session
+	 * @return          A moment object containing a period of time
+	 */
   $scope.calculateSessionDuration = function(session) {
   	var start = moment.unix(session.timestamp_start);
   	var stop = moment.unix(session.timestamp_stop);
   	return moment.utc(stop.diff(start)).format("HH:mm");
   };
 
+  /**
+   * This function removes a session from the database specified by the session id.
+   * 
+   * @param   sessionId The id of a session
+   */
   $scope.deleteSession = function(session) {
     Sessions.remove(session.id).then(function() {
       $scope.updateSessions();
@@ -39,10 +62,11 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	var counter;
 	var refresh;
 
-	/*
-	function start
-	The function expects the project id of the project it should start as parameter. If the project is not already running, the timer gets startet and an respective database entry is made, using the function starttimeDb.
-	*/
+	/**
+	 * This function starts the timer for a project specified by its id.
+	 * 
+	 * @param  projectId The 5 digit id of a project
+	 */
 	$scope.start = function(projectId) {
 	    var startDate = new Date();
 	    var startTime = startDate.getTime();
@@ -55,10 +79,11 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    }
 	};
 
-	/*
-	function stop
-	The function expects the project id of the project it should stop as parameter. If the project is currently running, the timer gets stopped and an respective database entry is made, using the function stoptimeDb.
-	*/
+	/**
+	 * This function stops the timer for a project specified by its id.
+	 * 
+	 * @param  projectId The 5 digit id of a project
+	 */
 	$scope.stop = function(projectId) {
 	    if(state === 1) {
 	        state = 0;
@@ -66,8 +91,11 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    }
 	};
 
-	/*
-	 Function timer increases the counter element every second, starting from a given start time.
+	/**
+	 * This function refreshes the displayed timer every second and formats the timer.
+	 * 
+	 * @param   startTime The time of the beginning of the current session
+	 * @param   projectId The 5 digit id of a project
 	 */
 	var timer = function(startTime, projectId) {
 	    var timeDiff = new Date().getTime() - startTime;
@@ -81,8 +109,11 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    }
 	};
 
-	/*
-	 Function starttimeDb inserts the current timestamp into the database table Sessions as starting point of the respective session.
+	/**
+	 * This function inserts the start time of a session into the database.
+	 * 
+	 * @param   startTime The time of the beginning of the current session
+	 * @param   projectId The 5 digit id of a project
 	 */
 	var starttimeDb = function(startTime, projectId) {
 	    var session = {};
@@ -92,8 +123,10 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    Sessions.addStart(session);
 	};
 
-	/*
-	 Function stoptimeDb updates the current session in the database table Sessions with the current timestamp as end point of the respespectie session.
+	/**
+	 * This function inserts the current time as stop time of the current session into the database.
+	 * 
+	 * @param  projectId The 5 digit id of a project
 	 */
 	var stoptimeDb = function(projectId) {
 			var session = {};
@@ -107,10 +140,4 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	    });
 	};
 
-})
-
-.controller('ModalController', function($scope, close) {
-  $scope.close = function(result) {
-    close(result);
-  };
 });

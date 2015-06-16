@@ -4,6 +4,11 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 	
 	var origUser = {};
 
+	/**
+	 * This function loads the data on the user from the database.
+	 * 
+	 * @return Empty return, if no user data available, else no return
+	 */
 	$scope.getUser = function() {
 		User.all().then(function(user) {
 			if($.isEmptyObject(user)) {
@@ -14,6 +19,11 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 		});
 	};
 
+	/**
+	 * This function either creates a new user in the database or updates the current user, depending on the existing of data on a user
+	 * 
+	 * @param   editUser An object containing user data
+	 */
 	$scope.editProfile = function(editUser) {
 		if($.isEmptyObject(origUser)) {
 			// Create new user
