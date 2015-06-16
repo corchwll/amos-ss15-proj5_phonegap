@@ -10,7 +10,6 @@ angular.module('MobileTimeRecording', [
   'MobileTimeRecording.controllers.Main',
   'MobileTimeRecording.controllers.AddProject',
   'MobileTimeRecording.controllers.EditUser',
-  'MobileTimeRecording.controllers.EditSession',
   'MobileTimeRecording.controllers.CreateSession',
   'MobileTimeRecording.controllers.ViewProject',
   'MobileTimeRecording.controllers.Dashboard',
@@ -42,11 +41,6 @@ angular.module('MobileTimeRecording', [
     .when('/editSession/:projectId', {
       templateUrl: 'createSession.html',
       controller: 'CreateSessionController',
-      reloadOnSearch: false
-    })
-    .when('/editSession/:projectId/:sessionId', {
-      templateUrl: 'editSession.html',
-      controller: 'EditSessionController',
       reloadOnSearch: false
     })
     .when('/dashboard', {
