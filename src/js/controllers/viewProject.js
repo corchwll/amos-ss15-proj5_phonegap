@@ -70,23 +70,33 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
 	$scope.start = function(projectId) {
     var startDate = new Date();
     var startTime = startDate.getTime();
+		var startDay = moment(startDate).format("YYYY-MM-DD");
 
-    /* Check for overlapping sessions */
-    Sessions.checkSimpleOverlapping(Math.floor(startTime/1000)).then(function(result) {
-    	if(result.overlappings === 0) {
-		    /* Start counter if it is not already running */
-		    if(state === 0) {
-		        state = 1;
-		        timer(startTime, projectId);
-		        starttimeDb(startTime, projectId);
-		    }
-  		} else {
-  			ngNotify.set('You have already recorded for this time', {
-  				type: 'error',
-  				position: 'top',
-  				duration: 3000
-  			});
-  		}
+    Sessions.getAccumulatedSessionfromDay(startDay).then(function(workingTimeOfDay) {
+
+	    /* Check for overlapping sessions */
+	    Sessions.checkSimpleOverlapping(Math.floor(startTime/1000)).then(function(result) {
+	    	if(60*60*10 <= workingTimeOfDay.working_time) {
+	    		ngNotify.set('The total working hours can not exceed ten hours per day', {
+					type: 'error',
+					position: 'top',
+					duration: 3000
+				});
+	    	} else if(result.overlappings === 0) {
+			    /* Start counter if it is not already running */
+			    if(state === 0) {
+			        state = 1;
+			        timer(startTime, projectId);
+			        starttimeDb(startTime, projectId);
+			    }
+				} else {
+					ngNotify.set('You have already recorded for this time', {
+						type: 'error',
+						position: 'top',
+						duration: 3000
+					});
+				}
+	    });
     });
   };
 
@@ -100,22 +110,41 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
     if(state === 1) {
       var stopDate = new Date();
    		var stopTime = stopDate.getTime();
+   		var day = moment(stopDate).format("YYYY-MM-DD");
 
     	Sessions.currentSession(projectId).then(function(result) {
     		Sessions.getById(result.currentSessionId).then(function(result2) {
     			Sessions.checkFullOverlapping(result2.timestamp_start, stopTime).then(function(result3) {
-    				if(result3.overlappings === 0) {
-    					state = 0;
-       	 				stoptimeDb(projectId);
-    				} else {
-    					state = 0;
-		    			ngNotify.set('You have already recorded for this time', {
-							type: 'error',
-							position: 'top',
-							duration: 3000
-						});
-		    			Sessions.remove(result.currentSessionId);
-    				}
+  					Sessions.getAccumulatedSessionfromDay(day).then(function(workingTimeOfDay) {
+    					var sessionTime = stopTime - result2.timestamp_start;
+
+    					if(sessionTime > (60*60*10 - workingTimeOfDay.working_time)) {
+    						var session = {};
+    						session.project_id = projectId;
+    						session.timestamp_stop = result2.timestamp_start + (60*60*10 - workingTimeOfDay.working_time);
+
+    						Sessions.addStop(session).then(function() {
+    							state = 0;
+    							$scope.counter = '00:00:00';
+    							ngNotify.set('The total working hours can not exceed ten hours per day', {
+										type: 'error',
+										position: 'top',
+										duration: 3000
+									});
+    						});
+    					} else if(result3.overlappings === 0) {
+	    					state = 0;
+	       	 				stoptimeDb(projectId);
+	    				} else {
+	    					state = 0;
+			    			ngNotify.set('You have already recorded for this time', {
+								type: 'error',
+								position: 'top',
+								duration: 3000
+							});
+			    			Sessions.remove(result.currentSessionId);
+	    				}
+	    			});
     			});
     		});
     	});
