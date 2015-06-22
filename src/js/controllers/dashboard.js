@@ -451,7 +451,7 @@ angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecordin
 	 * @param  file 		The CSV array file
 	 */
 	var sendCsvFile = function(file) {
-		var csv = Papa.unparse(file);
+		var csv = Papa.unparse(file, { delimiter: ";" });
 		var encoded = window.btoa(csv);
 		console.log("Generated CSV-file: \n" + csv);
 		console.log(encoded);
