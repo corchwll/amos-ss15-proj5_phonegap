@@ -22,4 +22,15 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
 	  	}, 3500);
 	  });
   };
+
+  /**
+   * This function starts a GPS localization in order to get the longitude and latitude of the current position.
+   * 
+   */
+  $scope.trackProject = function() {
+  	navigator.geolocation.getCurrentPosition(function(position) {
+  	  $scope.project.longitude = position.coords.longitude;
+  		$scope.project.latitude = position.coords.latitude;
+  	});
+  };
 });
