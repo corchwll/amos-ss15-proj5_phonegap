@@ -1,6 +1,6 @@
 angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.services.Database'])
 
-.controller('MainController', function($scope, Projects){
+.controller('MainController', function($scope, Projects, Sessions){
   $scope.projects = [];
   $scope.project = null;
 
@@ -13,6 +13,11 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
       every: 'day',
       firstAt: _5_sec_from_now,
       data: { key:'value' }
+  });
+
+  var today = moment(now).format("YYYY-MM-DD");
+  Sessions.getAllForDate(today).then(function(sessions) {
+    console.log(sessions);
   });
   
   /**
