@@ -29,7 +29,7 @@ angular.module('MobileTimeRecording', [
       controller: 'AddProjectController',
       reloadOnSearch: false
     })
-  	.when('/editProject', {
+  	.when('/editProject/:projectId', {
   		templateUrl: 'editProject.html',
   		controller: 'AddProjectController',
   		reloadOnSearch: false

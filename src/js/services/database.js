@@ -141,11 +141,21 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
     };
 
     /**
-     * This functions marks a projects specified by the id as archived.
+     * This function marks a project specified by the id as archived.
      * @param  id A five digit id
      */
     self.archive = function(id) {
         return DB.query("UPDATE Projects SET is_displayed = 0, is_archived = 1 WHERE id = (?)", [id]);
+    };
+
+    /**
+     * This function changes the data of a specified project
+     * @param  origProj Javascript object with the project id of the original project
+     * @param  editProj Javascript object with the data of the edited project
+     */
+    self.update = function(origProj, editProj) {
+        var parameters = [editProj.name, editProj.date, editProj.longitude, editProj.latitude, origProj.id];
+        return DB.query("UPDATE Projects SET name = (?), timestamp_final_date = (?), longitude = (?), latitude = (?) WHERE id = (?)", parameters);
     };
     
     return self;
