@@ -22,6 +22,20 @@
                         }
                     ]
                 }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -33,6 +47,9 @@
             "PACKAGE_NAME": "de.fau.cs.osr"
         },
         "de.appplant.cordova.plugin.email-composer": {
+            "PACKAGE_NAME": "de.fau.cs.osr"
+        },
+        "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "de.fau.cs.osr"
         }
     },

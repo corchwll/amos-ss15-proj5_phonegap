@@ -12,6 +12,12 @@
                             "xml": true,
                             "count": 1
                         }
+                    ],
+                    "CoreLocation.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -24,6 +30,20 @@
                         },
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"ios-package\" value=\"SQLitePlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "*-Info.plist": {
+                "parents": {
+                    "NSLocationWhenInUseUsageDescription": [
+                        {
+                            "xml": "<string />",
                             "count": 1
                         }
                     ]
@@ -40,6 +60,9 @@
         },
         "io.litehelpers.cordova.sqlite": {
             "PACKAGE_NAME": "com.develop-group"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "de.fau.cs.osr"
         }
     },
     "dependent_plugins": {}
