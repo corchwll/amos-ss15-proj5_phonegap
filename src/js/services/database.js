@@ -103,7 +103,7 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
      * @return          Array with all projects, one project per field
      */
     self.all = function() {
-        return DB.query('SELECT * FROM Projects')
+        return DB.query('SELECT * FROM Projects ORDER BY id')
         .then(function(result){
             return DB.fetchAll(result);
         });

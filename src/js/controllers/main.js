@@ -22,6 +22,7 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
             $timeout(function() {
               currentPosition.latitude = position.coords.latitude;
               currentPosition.longitude = position.coords.longitude;
+              var stdProjects = projects.splice(0, 4);
               projects.sort(function(a, b) {
                 var distA, distB;
                 if(a.latitude === 'undefined' && a.longitude === 'undefined') {
@@ -35,37 +36,25 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
                   distB = calculateDistance(currentPosition, b);
                 }
 
-                if(a.id === '00001') {
-                  return -1;
-                } else if(a.id === '00002') {
-                  return -1;
-                } else if(a.id === '00003') {
-                  return -1;
-                } else if(a.id === '00004') {
-                  return -1;
-                } else if(distA === distB) {
+                if(distA === distB) {
                   return 0;
                 } else if(distA < distB) {
                   return -1;
                 } else if(distA > distB) {
                   return 1;
                 }
-              });
-              $scope.projects = projects;
+              });              
+              for(var i = 0; i < projects.length; i++) {
+                stdProjects.push(projects[i]);
+              }
+              $scope.projects = stdProjects;
             }, 1);
             
           });
         } else {
+          var stdProjects = projects.splice(0, 4);
           projects.sort(function(a, b) {
-            if(a.id === '00001') {
-              return -1;
-            } else if(a.id === '00002') {
-              return -1;
-            } else if(a.id === '00003') {
-              return -1;
-            } else if(a.id === '00004') {
-              return -1;
-            } else if(a.name === b.name) {
+            if(a.name === b.name) {
               return 0;
             } else if(a.name < b.name) {
               return -1;
@@ -73,7 +62,10 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
               return 1;
             }
           });
-          $scope.projects = projects;
+          for(var i = 0; i < projects.length; i++) {
+            stdProjects.push(projects[i]);
+          }
+          $scope.projects = stdProjects;
         }
       });
   	});
