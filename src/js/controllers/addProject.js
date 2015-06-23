@@ -61,6 +61,6 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
   		  $scope.project.longitude = position.coords.longitude;
   			$scope.project.latitude = position.coords.latitude;
   		}, 1);
-  	});
+  	}, console.log('gps-error: ' + error.code), { enableHighAccuracy: true });
   };
 });
