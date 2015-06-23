@@ -89,6 +89,15 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
   };
 
   /**
+   * This function is used to forward to the edit page for a specified project
+   * 
+   * @param  projectId The 5 digit id of a project
+   */
+  $scope.editProject = function(projectId) {
+    $(location).attr('href', '#/editProject/' + projectId);
+  };
+
+  /**
    * This function deletes (internally archive) a project specified by its id
    * 
    * @param   project An object containing a project
