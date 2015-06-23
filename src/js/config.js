@@ -11,7 +11,9 @@ angular.module('MobileTimeRecording.config', [])
 				{name: 'is_displayed', type: 'INTEGER'},
 				{name: 'is_used', type: 'INTEGER'},
 				{name: 'is_archived', type: 'INTEGER'},
-				{name: 'timestamp_final_date', type: 'INTEGER'}
+				{name: 'timestamp_final_date', type: 'INTEGER'},
+				{name: 'longitude', type: 'REAL'},
+				{name: 'latitude', type: 'REAL'}
 			]
 		},
 		{
@@ -33,7 +35,8 @@ angular.module('MobileTimeRecording.config', [])
 				{name: 'total_vacation_time', type: 'INTEGER'},
 				{name: 'current_vacation_time', type: 'INTEGER'},
 				{name: 'current_overtime', type: 'INTEGER'},
-				{name: 'registration_date', type: 'INTEGER'}
+				{name: 'registration_date', type: 'INTEGER'},
+				{name: 'location_sort_is_used', type: 'INTEGER'}
 			]
 		},
 		{

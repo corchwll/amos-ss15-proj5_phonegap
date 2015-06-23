@@ -128,8 +128,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
      * @param  project Javascript object with parameters for the new project
      */
     self.add = function(project) {
-        var parameters = [project.id, project.name, 1, 1, 0, project.date];
-        return DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived, timestamp_final_date) VALUES (?, ?, ?, ?, ?, ?)", parameters);
+        var parameters = [project.id, project.name, 1, 1, 0, project.date, project.longitude, project.latitude];
+        return DB.query("INSERT INTO Projects (id, name, is_displayed, is_used, is_archived, timestamp_final_date, longitude, latitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", parameters);
     };
 
     /**
@@ -186,8 +186,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
      * @param  user Javascript object with parameters for the new user
      */
     self.add = function(user) {
-        var parameters = [user.employee_id, user.lastname, user.firstname, user.weekly_working_time, user.total_vacation_time, user.current_vacation_time, user.current_overtime, user.registration_date];
-        return DB.query("INSERT INTO User (employee_id, lastname, firstname, weekly_working_time, total_vacation_time, current_vacation_time, current_overtime, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", parameters);
+        var parameters = [user.employee_id, user.lastname, user.firstname, user.weekly_working_time, user.total_vacation_time, user.current_vacation_time, user.current_overtime, user.registration_date, user.useGpsSort];
+        return DB.query("INSERT INTO User (employee_id, lastname, firstname, weekly_working_time, total_vacation_time, current_vacation_time, current_overtime, registration_date, location_sort_is_used) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", parameters);
     };
     
     /**
@@ -197,8 +197,8 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
      * @param  editUser Javascript object with new parameters for the edited user
      */
     self.update = function(origUser, editUser) {
-        var parameters = [editUser.employee_id, editUser.lastname, editUser.firstname, editUser.weekly_working_time, editUser.total_vacation_time, editUser.current_vacation_time, editUser.current_overtime, origUser.employee_id];
-        return DB.query("UPDATE User SET employee_id = (?), lastname = (?), firstname = (?), weekly_working_time = (?), total_vacation_time = (?), current_vacation_time = (?), current_overtime = (?) WHERE employee_id = (?)", parameters);
+        var parameters = [editUser.employee_id, editUser.lastname, editUser.firstname, editUser.weekly_working_time, editUser.total_vacation_time, editUser.current_vacation_time, editUser.current_overtime, editUser.location_sort_is_used, origUser.employee_id];
+        return DB.query("UPDATE User SET employee_id = (?), lastname = (?), firstname = (?), weekly_working_time = (?), total_vacation_time = (?), current_vacation_time = (?), current_overtime = (?), location_sort_is_used = (?) WHERE employee_id = (?)", parameters);
     };
     
     return self;
