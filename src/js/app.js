@@ -24,8 +24,13 @@ angular.module('MobileTimeRecording', [
   		controller: 'MainController',
   		reloadOnSearch: false
   	})
-  	.when('/addProject', {
-  		templateUrl: 'addProject.html',
+    .when('/addProject', {
+      templateUrl: 'addProject.html',
+      controller: 'AddProjectController',
+      reloadOnSearch: false
+    })
+  	.when('/editProject', {
+  		templateUrl: 'editProject.html',
   		controller: 'AddProjectController',
   		reloadOnSearch: false
   	})

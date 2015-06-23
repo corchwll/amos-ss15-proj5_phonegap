@@ -1,0 +1,56 @@
+<div class="scrollable">
+	<div class="scrollable-content section">
+		<div ui-content-for="title">
+			<span>Edit project</span>
+		</div>
+		<form novalidate name="form" ng-init="getProject()">
+			<fieldset>
+				<div class="form-group">
+					<label>Project ID</label>
+					<input class="form-control" name="projectID" type="text" ng-model="project.id" ng-pattern="/^\d{5}$/" integer disabled/>
+				</div>
+				<div class="form-group">
+					<label>Project name</label>
+					<input class="form-control" name="name" type="text" placeholder="Please enter the project name" ng-model="project.name" required/>
+					<p class="help-block" ng-show="form.name.$error.required">
+						please fill out every field
+					</p>
+				</div>
+				<div class="form-group">
+					<label>Final project date</label>
+					<input type="text" class="hidden"
+			      datetimepicker
+			      datetimepicker-options="{
+			       	format: 'YYYY/MM/DD',
+			        inline: true
+			      }"
+			      name="date"
+			      ng-model="project.date">
+				</div>
+				<div class="form-group">
+					<label>Longitude</label>
+					<input class="form-control" name="longitude" type="text" placeholder="Please enter longitude or use track button" ng-model="project.longitude" />
+				</div>
+				<div class="form-group">
+					<label>Latitude</label>
+					<input class="form-control" name="latitude" type="text" placeholder="Please enter latitude or use track button" ng-model="project.latitude" />
+				</div>
+			</fieldset>
+			<div ui-content-for="navbarAction">
+		    <button ng-disabled="form.$invalid" class="btn" ng-click="editProject(project)">
+		      Save
+		    </button>
+		  </div>
+	    <div style="padding-bottom: 10px">
+		    <button class="btn btn-warning btn-block" ng-click="trackProject()">
+		      Track
+		    </button>
+	    </div>
+    	<div>
+        <button ng-disabled="form.$invalid" class="btn btn-primary btn-block" ng-click="editProject(project)">
+          Save
+        </button>
+      </div>
+		</form>
+	</div>
+</div>
