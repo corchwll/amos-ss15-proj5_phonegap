@@ -96,6 +96,11 @@
 						please check your inputs
 					</p>
 				</div>
+				<!-- GPS sort input-->
+				<div class="form-group">
+					<label>Use GPS to sort projects</label>
+					<ui-switch ng-model="editUser.location_sort_is_used"></ui-switch>
+				</div>
 			</fieldset>
 			<div ui-content-for="navbarAction">
 		    <button ng-disabled="form.$invalid" class="btn" ng-click="editProfile(editUser)">

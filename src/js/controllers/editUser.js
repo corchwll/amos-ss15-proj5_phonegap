@@ -28,6 +28,11 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 		if($.isEmptyObject(origUser)) {
 			// Create new user
 	  	editUser.registration_date = Math.floor(Date.now() / 1000);
+	  	if(editUser.location_sort_is_used === true) {
+	  		editUser.location_sort_is_used = 1;
+	  	} else {
+	  		editUser.location_sort_is_used = 0;
+	  	}
 	  	User.add(editUser).then(function() {
 	  		ngNotify.set('User profile successfully created', {
 	  			type: 'success',
@@ -40,6 +45,11 @@ angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording
 	  	});
 	  } else {
 	  	// Update existing user
+	  	if(editUser.location_sort_is_used === true) {
+	  		editUser.location_sort_is_used = 1;
+	  	} else {
+	  		editUser.location_sort_is_used = 0;
+	  	}
   		User.update(origUser, editUser).then(function() {
 	  		ngNotify.set('User profile successfully updated', {
 	  			type: 'success',

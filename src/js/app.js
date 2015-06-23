@@ -4,6 +4,7 @@ angular.module('MobileTimeRecording', [
   'mobile-angular-ui.core.fastclick',
   'mobile-angular-ui.core.sharedState',
   'mobile-angular-ui.components.scrollable',
+  'mobile-angular-ui.components.switch',
   'ngNotify',
   'datetimepicker',
   'confirmClick',
