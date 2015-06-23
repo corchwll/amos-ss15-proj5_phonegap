@@ -2,6 +2,10 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
 
 .controller('AddProjectController', function($scope, Projects, $location, ngNotify, $timeout, $routeParams){
 
+	/**
+	 * This function searches a project specified by its id in the database and fills the current values into the edit project form.
+	 * 
+	 */
 	$scope.getProject = function() {
 		Projects.getById($routeParams.projectId).then(function(project) {
 			$scope.project = project;
