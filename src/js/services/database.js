@@ -229,6 +229,18 @@ angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.co
             return DB.fetchAll(result);
         });
     };
+
+    /**
+     * This function returns all sessions for a specified date
+     * @param   date The date of a specific day
+     * @return       Array with all sessions for the specified date
+     */
+    self.getAllForDate = function(date) {
+        return DB.query('SELECT * FROM Sessions WHERE date(timestamp_start, "unixepoch", "utc") = (?)', [date])
+        .then(function(result) {
+            return DB.fetchAll(result);
+        });
+    };
     
     /**
      * This function returns the data of a session specified by the session id.

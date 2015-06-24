@@ -195,6 +195,9 @@ angular.module('MobileTimeRecording.controllers.ViewProject', ['MobileTimeRecord
     session.project_id =  projectId;
 
     Sessions.addStop(session).then(function() {
+    	cordova.plugins.notification.local.cancel(1, function() {
+    	  console.log("Daily notification canceled for today");
+    	});
     	$scope.counter = '00:00:00';
     	$scope.updateSessions();
     });
