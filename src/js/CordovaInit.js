@@ -13,6 +13,23 @@ var CordovaInit = function() {
 
 	this.bindEvents = function() {
 		document.addEventListener('deviceready', onDeviceReady, false);
+		cordova.plugins.notification.local.hasPermission(function(granted) {
+		  if (!granted)
+		    cordova.plugins.notification.local.promptForPermission();
+		});
+
+		/**
+		 *  Record time notification
+		 */
+		var now = new Date();
+		var at8pm = now.setHours(20, 0, 0);
+
+		cordova.plugins.notification.local.schedule({
+		    id: 1,
+		    text: "You haven't recorded your time today",
+		    every: 'day',
+		    firstAt: moment(at8pm).unix()
+		});
 	};
 
 	//If cordova is present, wait for it to initialize, otherwise just try to

@@ -3,22 +3,6 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
 .controller('MainController', function($scope, Projects, Sessions){
   $scope.projects = [];
   $scope.project = null;
-
-  var now = new Date().getTime();
-  var _5_sec_from_now = new Date(now + 5 * 1000);
-
-  cordova.plugins.notification.local.schedule({
-      id: 1,
-      text: 'My first notification',
-      every: 'day',
-      firstAt: _5_sec_from_now,
-      data: { key:'value' }
-  });
-
-  var today = moment(now).format("YYYY-MM-DD");
-  Sessions.getAllForDate(today).then(function(sessions) {
-    console.log(sessions);
-  });
   
   /**
    * This function refreshes the view of the project lists and, therefore, loads all projects from the database.
