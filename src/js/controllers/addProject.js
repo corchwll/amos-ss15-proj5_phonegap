@@ -60,11 +60,13 @@ angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecordi
    * 
    */
   $scope.trackProject = function() {
-  	navigator.geolocation.getCurrentPosition(function(position) {
+  	navigator.geolocation.getCurrentPosition(function(position, error) {
   		$timeout(function() {
   		  $scope.project.longitude = position.coords.longitude;
   			$scope.project.latitude = position.coords.latitude;
   		}, 1);
-  	}, console.log('gps-error: ' + error.code), { enableHighAccuracy: true });
+  	}, function(error) {
+  		console.log('gps-error: ' + error.code + error.message);
+  	}, { enableHighAccuracy: true });
   };
 });

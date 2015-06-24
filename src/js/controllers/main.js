@@ -50,7 +50,9 @@ angular.module('MobileTimeRecording.controllers.Main', ['MobileTimeRecording.ser
               $scope.projects = stdProjects;
             }, 1);
             
-          }, console.log('gps-error: ' + error.code), { enableHighAccuracy: true });
+          }, function(error) { 
+            console.log('gps-error: ' + error.code + error.message);
+          }, { enableHighAccuracy: true });
         } else {
           var stdProjects = projects.splice(0, 4);
           projects.sort(function(a, b) {
