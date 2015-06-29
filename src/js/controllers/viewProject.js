@@ -122,7 +122,7 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', ['MobileTimeAccou
   var projectExpired = function(currentDate ,finalDate) {
   	if(!finalDate) {
   		return false;
-  	} else if(currentDate >= finalDate) {
+  	} else if(currentDate > finalDate) {
   		return true;
   	} else {
   		return false;

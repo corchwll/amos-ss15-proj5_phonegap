@@ -20,7 +20,7 @@ angular.module('MobileTimeAccounting.controllers.AddProject', ['MobileTimeAccoun
 	 */
 	$scope.addProject = function(project) {
 		// convert date to unix timestamp
-		project.date = Date.parse(project.date)/1000;
+		project.date = moment(project.date).add(23, 'hours').add(59, 'minutes').unix();
 
 	  Projects.add(project).then(function() {
 	  	ngNotify.set(project.name + ' successfully added', {
@@ -41,7 +41,7 @@ angular.module('MobileTimeAccounting.controllers.AddProject', ['MobileTimeAccoun
    */
   $scope.editProject = function(project) {
   	// convert date to unix timestamp
-		project.date = Date.parse(project.date)/1000;
+  	project.date = moment(project.date).add(23, 'hours').add(59, 'minutes').unix();
 
 		Projects.update(project, project).then(function() {
 			ngNotify.set(project.name + ' successfully edited', {
