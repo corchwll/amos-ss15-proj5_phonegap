@@ -72,32 +72,61 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', ['MobileTimeAccou
     var startTime = startDate.getTime();
 		var startDay = moment(startDate).format("YYYY-MM-DD");
 
-    Sessions.getAccumulatedSessionfromDay(startDay).then(function(workingTimeOfDay) {
-
-	    /* Check for overlapping sessions */
-	    Sessions.checkSimpleOverlapping(Math.floor(startTime/1000)).then(function(result) {
-	    	if(60*60*10 <= workingTimeOfDay.working_time) {
-	    		ngNotify.set('The total working hours can not exceed ten hours per day', {
+		/* Check for project end date */
+		Projects.getById(projectId).then(function(project) {
+			var finalDate = project.timestamp_final_date;
+			if(projectExpired(startTime/1000, finalDate)) {
+				ngNotify.set('It is not possible to record times after the final project date', {
 					type: 'error',
 					position: 'top',
 					duration: 3000
 				});
-	    	} else if(result.overlappings === 0) {
-			    /* Start counter if it is not already running */
-			    if(state === 0) {
-			        state = 1;
-			        timer(startTime, projectId);
-			        starttimeDb(startTime, projectId);
-			    }
-				} else {
-					ngNotify.set('You have already recorded for this time', {
-						type: 'error',
-						position: 'top',
-						duration: 3000
-					});
-				}
-	    });
-    });
+			} else {
+				/* Check for maximum working time per day */
+				Sessions.getAccumulatedSessionfromDay(startDay).then(function(workingTimeOfDay) {
+			    /* Check for overlapping sessions */
+			    Sessions.checkSimpleOverlapping(Math.floor(startTime/1000)).then(function(result) {
+			    	if(60*60*10 <= workingTimeOfDay.working_time) {
+			    		ngNotify.set('The total working hours can not exceed ten hours per day', {
+							type: 'error',
+							position: 'top',
+							duration: 3000
+						});
+			    	} else if(result.overlappings === 0) {
+					    /* Start counter if it is not already running */
+					    if(state === 0) {
+					        state = 1;
+					        timer(startTime, projectId);
+					        starttimeDb(startTime, projectId);
+					    }
+						} else {
+							ngNotify.set('You have already recorded for this time', {
+								type: 'error',
+								position: 'top',
+								duration: 3000
+							});
+						}
+			    });
+		    });
+			}
+		});
+  };
+
+  /**
+   * This function checks if the final project date has been reached already.
+   * 
+   * @param  currentDate Unix timestamp
+   * @param  finalDate   Unix timestamp
+   * @return             Boolean
+   */
+  var projectExpired = function(currentDate ,finalDate) {
+  	if(!finalDate) {
+  		return false;
+  	} else if(currentDate >= finalDate) {
+  		return true;
+  	} else {
+  		return false;
+  	}
   };
 
 
