@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.controllers.Dashboard', ['MobileTimeRecording.services.Database'])
+angular.module('MobileTimeAccounting.controllers.Dashboard', ['MobileTimeAccounting.services.Database'])
 
 .controller('DashboardController', function($scope, Sessions, User, Projects, DummyMonth, $q, $timeout){
 

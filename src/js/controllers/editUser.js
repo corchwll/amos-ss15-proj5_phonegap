@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.controllers.EditUser', ['MobileTimeRecording.services.Database'])
+angular.module('MobileTimeAccounting.controllers.EditUser', ['MobileTimeAccounting.services.Database'])
 
 .controller('EditUserController', function($scope, User, ngNotify, $timeout){
 	

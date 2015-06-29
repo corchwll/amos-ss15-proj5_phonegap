@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.controllers.AddProject', ['MobileTimeRecording.services.Database'])
+angular.module('MobileTimeAccounting.controllers.AddProject', ['MobileTimeAccounting.services.Database'])
 
 .controller('AddProjectController', function($scope, Projects, $location, ngNotify, $timeout, $routeParams){
 

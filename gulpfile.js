@@ -217,7 +217,7 @@ gulp.task('less', function () {
     }))
     .pipe(cssmin())
     .pipe(rename({suffix: '.min'}))
-    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeRecording', organization: 'AMOS Team 5 SS15'}))
+    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeAccounting', organization: 'AMOS Team 5 SS15'}))
     .pipe(gulp.dest(path.join(config.dest, 'css')));
 });
 
@@ -232,7 +232,7 @@ gulp.task('js', function() {
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
       gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'MobileTimeRecording' }))
+      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'MobileTimeAccounting' }))
     )
     .pipe(sourcemaps.init())
     .pipe(concat('app.js'))
@@ -240,7 +240,7 @@ gulp.task('js', function() {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.'))
-    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeRecording', organization: 'AMOS Team 5 SS15'}))
+    .pipe(license('gpl3', {tiny: false, project: 'MobileTimeAccounting', organization: 'AMOS Team 5 SS15'}))
     .pipe(gulp.dest(path.join(config.dest, 'js')));
 });
 

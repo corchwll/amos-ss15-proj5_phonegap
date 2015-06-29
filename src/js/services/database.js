@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.services.Database', ['MobileTimeRecording.config'])
+angular.module('MobileTimeAccounting.services.Database', ['MobileTimeAccounting.config'])
 
 // DB wrapper based on https://gist.github.com/jgoux/10738978
 .factory('DB', function($q, DB_CONFIG) {

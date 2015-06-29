@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.config', [])
+angular.module('MobileTimeAccounting.config', [])
 
 .constant('DB_CONFIG', {
 	name: 'MTR',

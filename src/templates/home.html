@@ -11,7 +11,7 @@
 	    type="search"
 	    class="form-control scrollable-header"
 	    placeholder="Search.." />
-  <div class="scrollabale-content">
+  <div class="scrollable-content">
 		<div ng-init="updateProjects()" class="list-group">
 			<a ng-click="delete || viewProject(project.id)" class="list-group-item" ng-repeat="project in projects | filter: { is_archived: '!' + 1 } | filter: searchProjects">
 				<button class="btn btn-danger" ng-disabled="project.id === '00001' || project.id === '00002' || project.id === '00003' || project.id === '00004'" ng-show="delete" confirm-click="deleteProject(project);" confirm-message="Are you sure?">DELETE</button>

@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording.controllers.CreateSession', ['MobileTimeRecording.services.Database'])
+angular.module('MobileTimeAccounting.controllers.CreateSession', ['MobileTimeAccounting.services.Database'])
 
 .controller('CreateSessionController', function($scope, Sessions, Projects, $location, ngNotify, $timeout, $routeParams){
 	

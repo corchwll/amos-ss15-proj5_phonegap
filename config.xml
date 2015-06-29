@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.fau.cs.osr" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>MobileTimeRecording</name>
+<widget id="de.fau.cs.osr.MobileTimeAccounting" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>MobileTimeAccounting</name>
     <description>
         An Apache Cordova/Phonegap application for mobile time recording.
     </description>

@@ -1,4 +1,4 @@
-angular.module('MobileTimeRecording', [
+angular.module('MobileTimeAccounting', [
   'ngRoute',
   'mobile-angular-ui',
   'mobile-angular-ui.core.fastclick',
@@ -8,13 +8,13 @@ angular.module('MobileTimeRecording', [
   'ngNotify',
   'datetimepicker',
   'confirmClick',
-  'MobileTimeRecording.controllers.Main',
-  'MobileTimeRecording.controllers.AddProject',
-  'MobileTimeRecording.controllers.EditUser',
-  'MobileTimeRecording.controllers.CreateSession',
-  'MobileTimeRecording.controllers.ViewProject',
-  'MobileTimeRecording.controllers.Dashboard',
-  'MobileTimeRecording.services.Database'
+  'MobileTimeAccounting.controllers.Main',
+  'MobileTimeAccounting.controllers.AddProject',
+  'MobileTimeAccounting.controllers.EditUser',
+  'MobileTimeAccounting.controllers.CreateSession',
+  'MobileTimeAccounting.controllers.ViewProject',
+  'MobileTimeAccounting.controllers.Dashboard',
+  'MobileTimeAccounting.services.Database'
 ])
 
 .config(function($routeProvider) {

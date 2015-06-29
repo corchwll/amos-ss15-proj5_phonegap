@@ -8,7 +8,7 @@ var CordovaInit = function() {
 
 	var receivedEvent = function() {
 		console.log('Start event received, bootstrapping application setup.');
-		angular.bootstrap($('body'), ['MobileTimeRecording']);
+		angular.bootstrap($('body'), ['MobileTimeAccounting']);
 	};
 
 	this.bindEvents = function() {
