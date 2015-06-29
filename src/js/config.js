@@ -36,7 +36,8 @@ angular.module('MobileTimeAccounting.config', [])
 				{name: 'current_vacation_time', type: 'INTEGER'},
 				{name: 'current_overtime', type: 'INTEGER'},
 				{name: 'registration_date', type: 'INTEGER'},
-				{name: 'location_sort_is_used', type: 'INTEGER'}
+				{name: 'location_sort_is_used', type: 'INTEGER'},
+				{name: 'vacation_updated', type: 'INTEGER'}
 			]
 		},
 		{

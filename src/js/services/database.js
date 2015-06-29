@@ -196,12 +196,12 @@ angular.module('MobileTimeAccounting.services.Database', ['MobileTimeAccounting.
      * @param  user Javascript object with parameters for the new user
      */
     self.add = function(user) {
-        var parameters = [user.employee_id, user.lastname, user.firstname, user.weekly_working_time, user.total_vacation_time, user.current_vacation_time, user.current_overtime, user.registration_date, user.useGpsSort];
-        return DB.query("INSERT INTO User (employee_id, lastname, firstname, weekly_working_time, total_vacation_time, current_vacation_time, current_overtime, registration_date, location_sort_is_used) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", parameters);
+        var parameters = [user.employee_id, user.lastname, user.firstname, user.weekly_working_time, user.total_vacation_time, user.current_vacation_time, user.current_overtime, user.registration_date, user.useGpsSort, user.registration_date];
+        return DB.query("INSERT INTO User (employee_id, lastname, firstname, weekly_working_time, total_vacation_time, current_vacation_time, current_overtime, registration_date, location_sort_is_used, vacation_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", parameters);
     };
     
     /**
-     * This functions changes the entire data of a user.
+     * This function changes the entire data of a user.
      * 
      * @param  origUser Javascript object with the employee id of the user
      * @param  editUser Javascript object with new parameters for the edited user
@@ -209,6 +209,17 @@ angular.module('MobileTimeAccounting.services.Database', ['MobileTimeAccounting.
     self.update = function(origUser, editUser) {
         var parameters = [editUser.employee_id, editUser.lastname, editUser.firstname, editUser.weekly_working_time, editUser.total_vacation_time, editUser.current_vacation_time, editUser.current_overtime, editUser.location_sort_is_used, origUser.employee_id];
         return DB.query("UPDATE User SET employee_id = (?), lastname = (?), firstname = (?), weekly_working_time = (?), total_vacation_time = (?), current_vacation_time = (?), current_overtime = (?), location_sort_is_used = (?) WHERE employee_id = (?)", parameters);
+    };
+
+    /**
+     * This function executes the yearly vacation update.
+     * 
+     * @param   userId     The employee id
+     * @param   updateDate Unix timestamp of the current date
+     */
+    self.updateVacation = function(userId, updateDate) {
+        var parameters = [updateDate, userId];
+        return DB.query("UPDATE User SET vacation_updated = (?), total_vacation_time = (20), current_vacation_time = (0) WHERE employee_id = (?)", parameters);
     };
     
     return self;
