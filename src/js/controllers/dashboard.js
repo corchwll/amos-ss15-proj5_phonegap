@@ -2,6 +2,8 @@ angular.module('MobileTimeAccounting.controllers.Dashboard', ['MobileTimeAccount
 
 .controller('DashboardController', function($scope, Sessions, User, Projects, DummyMonth, $q, $timeout){
 
+	$scope.showVacationInfo = false;
+
 	var x;
 	var xLength = 33;
 	var y;
@@ -22,9 +24,22 @@ angular.module('MobileTimeAccounting.controllers.Dashboard', ['MobileTimeAccount
 	 */
 	$scope.updateDashboard = function() {
 		updateVacation();
+		checkVacationInfo();
 		getOvertime();
 		getLeftVacationDays();
 		DummyMonth.populate();
+	};
+
+	/**
+	 * This function checks if the current date is between 1. January and 30. March and sets the corresponding boolean variable accordingly.
+	 * 
+	 */
+	var checkVacationInfo = function() {
+		if(moment().isBetween(moment().month(0).date(1), moment().month(2).date(30))) {
+			$scope.showVacationInfo = true;
+		} else {
+			$scope.showVacationInfo = false;
+		}
 	};
 
 	/**
