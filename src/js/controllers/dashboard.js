@@ -21,9 +21,25 @@ angular.module('MobileTimeAccounting.controllers.Dashboard', ['MobileTimeAccount
 	 * 
 	 */
 	$scope.updateDashboard = function() {
+		updateVacation();
 		getOvertime();
 		getLeftVacationDays();
 		DummyMonth.populate();
+	};
+
+	/**
+	 * This function checks whether this years vacation is already updated and, if not, calls the respective database function.
+	 * 
+	 */
+	var updateVacation = function() {
+		User.all().then(function(user) {
+			var aprilFirst = moment().month(3).date(1);
+			if(moment().add(1, 'day').isAfter(aprilFirst) && moment(user[0].vacation_updated*1000).isBefore(aprilFirst)) {
+				User.updateVacation(user[0].employee_id, moment().unix()).then(function(){
+					console.log("vacation days updated!");
+				});
+			}
+		});
 	};
 
 	/**
