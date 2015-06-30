@@ -4,6 +4,13 @@
 <div class="scrollable">    
 	<div class="scrollable-content" ng-init="updateDashboard()">
 		<div class="list-group text-center">
+			<div class="list-group-item" ng-show="showVacationInfo">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						Please use your left vacation days until 30th of March
+					</div>
+				</div>
+			</div>
 			<div class="list-group-item">
 				<div class="dashboard-number"><p>{{overtime}} h overtime</div>
 				<div class="dashboard-number">{{leftVacationDays}} <span ng-show="leftVacationDays === 1">day</span><span ng-hide="leftVacationDays === 1">days</span> vacation left</div>
