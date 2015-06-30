@@ -18,10 +18,13 @@ var config = {
       './bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js',
       './bower_components/ng-notify/dist/ng-notify.min.js',
       './bower_components/moment/moment.js',
+      './bower_components/moment/min/locales.js',
       './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.min.js',
       './bower_components/papaparse/papaparse.min.js',
-      './bower_components/angular-confirm-click/dist/confirmClick.js'
+      './bower_components/angular-confirm-click/dist/confirmClick.js',
+      './bower_components/humanize-duration/humanize-duration.js',
+      './bower_components/angular-timer/dist/angular-timer.js'
     ],
 
     fonts: [

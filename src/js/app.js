@@ -8,6 +8,7 @@ angular.module('MobileTimeAccounting', [
   'ngNotify',
   'datetimepicker',
   'confirmClick',
+  'timer',
   'MobileTimeAccounting.controllers.Main',
   'MobileTimeAccounting.controllers.AddProject',
   'MobileTimeAccounting.controllers.EditUser',
