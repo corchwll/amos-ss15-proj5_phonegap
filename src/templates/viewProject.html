@@ -10,11 +10,9 @@
     	<button class="btn" ng-model="delete" ng-click="delete = !delete">Edit</button>
     </div>
     <div ng-show="project.is_used === 1" class="text-center">
-			<i class="glyphicon glyphicon-play session-icon text-success" ng-click="start(project.id)"></i>	
-			<i class="glyphicon glyphicon-stop session-icon text-danger" ng-click="stop(project.id)"></i>
-			<div>
-				<p class="timer">{{counter}}</p>
-			</div>
+    	<p class="session-icon text-success" ng-click="startTimer(project.id)" ng-disabled="timerRunning">start</p>
+    	<p class="session-icon text-danger" ng-click="stopTimer(project.id)" ng-disabled="!timerRunning">stop</p>
+			<h1><timer autostart="false" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer></h3>
     </div>
 	</div>
 	<div class="scrollable-content section">
