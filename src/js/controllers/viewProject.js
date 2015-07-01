@@ -184,9 +184,9 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', ['MobileTimeAccou
     session.project_id =  projectId;
 
     Sessions.addStop(session).then(function() {
-    	// cordova.plugins.notification.local.cancel(1, function() {
-    	//   console.log("Daily notification canceled for today");
-    	// });
+    	cordova.plugins.notification.local.cancel(1, function() {
+    	  console.log("Daily notification canceled for today");
+    	});
     	$scope.updateSessions();
     });
 	};
