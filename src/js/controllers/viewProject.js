@@ -33,6 +33,18 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', ['MobileTimeAccou
 		$(location).attr('href', '#/editSession/' + projectId);
 	};
 
+	/**
+	 * This function computes the duration of a session depending on its start and end.
+	 * 
+	 * @param   session An object containing a session
+	 * @return          A moment object containing a period of time
+	 */
+  $scope.calculateSessionDuration = function(session) {
+  	var start = moment.unix(session.timestamp_start);
+  	var stop = moment.unix(session.timestamp_stop);
+  	return moment.utc(stop.diff(start)).format("HH:mm");
+  };
+
   /**
    * This function removes a session from the database specified by the session id.
    * 
