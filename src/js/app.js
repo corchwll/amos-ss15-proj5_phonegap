@@ -3,6 +3,7 @@ angular.module('MobileTimeAccounting', [
   'mobile-angular-ui',
   'mobile-angular-ui.core.fastclick',
   'mobile-angular-ui.core.sharedState',
+  'mobile-angular-ui.core.activeLinks',
   'mobile-angular-ui.components.scrollable',
   'mobile-angular-ui.components.switch',
   'ngNotify',
