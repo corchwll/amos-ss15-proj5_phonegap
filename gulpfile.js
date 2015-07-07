@@ -27,10 +27,7 @@ var config = {
       './bower_components/angular-timer/dist/angular-timer.js'
     ],
 
-    fonts: [
-      './bower_components/font-awesome/fonts/fontawesome-webfont.*',
-      './bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.*'
-    ]
+    fonts: []
   },
 
   server: {
