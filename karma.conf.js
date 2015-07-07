@@ -18,6 +18,8 @@ module.exports = function(config) {
       './bower_components/moment/moment.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-mocks/angular-mocks.js',
+      './bower_components/angular-route/angular-route.js',
+      './bower_components/angular-timer/dist/angular-timer.js',
       './bower_components/jquery/dist/jquery.js',
       './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.js',
