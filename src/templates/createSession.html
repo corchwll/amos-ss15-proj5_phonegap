@@ -18,8 +18,8 @@
 			      ng-model="session.date">
 				</div>
 
-				<div class="form-group" ng-show="checkWorkday()">
-					<div class="alert alert-warning"><b>Warning!</b> Please be aware that your selected day is no workday!</div>
+				<div class="form-group" ng-show="checkWorkday(session.date)">
+					<div class="alert alert-warning"><b>Warning:</b> Please be aware that your selected day is no workday!</div>
 				</div>
 
 				<div class="form-group">
