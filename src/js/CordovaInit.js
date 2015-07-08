@@ -19,6 +19,13 @@ var CordovaInit = function() {
 		});
 
 		/**
+		 *  Android background color fix
+		 */
+		if (cordova.platformId == 'android') {
+		    StatusBar.backgroundColorByHexString("#00375b");
+		}
+
+		/**
 		 *  Record time notification
 		 */
 		var now = new Date();

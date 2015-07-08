@@ -33,6 +33,10 @@
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"wp-package\" value=\"SQLitePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"StatusBar\"><param name=\"wp-package\" value=\"StatusBar\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -59,6 +63,9 @@
             "PACKAGE_NAME": "{0b552660-1a4a-11e5-8f39-433ac6160ad1}"
         },
         "io.litehelpers.cordova.sqlite": {
+            "PACKAGE_NAME": "{0b552660-1a4a-11e5-8f39-433ac6160ad1}"
+        },
+        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "{0b552660-1a4a-11e5-8f39-433ac6160ad1}"
         }
     },

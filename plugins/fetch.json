@@ -54,5 +54,13 @@
             "type": "registry",
             "id": "de.appplant.cordova.common.registerusernotificationsettings"
         }
+    },
+    "cordova-plugin-statusbar": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-statusbar"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
