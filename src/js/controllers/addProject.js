@@ -1,6 +1,6 @@
 angular.module('MobileTimeAccounting.controllers.AddProject', [])
 
-.controller('AddProjectController', function($scope, Projects, $location, ngNotify, $timeout, $routeParams){
+.controller('AddProjectController', function($scope, Projects, $location, Notify, $timeout, $routeParams){
 
 	/**
 	 * This function searches a project specified by its id in the database and fills the current values into the edit project form.
@@ -23,11 +23,7 @@ angular.module('MobileTimeAccounting.controllers.AddProject', [])
 		project.date = moment(project.date).add(23, 'hours').add(59, 'minutes').unix();
 
 	  Projects.add(project).then(function() {
-	  	ngNotify.set(project.name + ' successfully added', {
-	  			type: 'success',
-	  			position: 'top',
-	  			duration: 3000
-	  		});
+	  	Notify.success(project.name + ' successfully added');
 	  	$timeout(function() {
 	  		$(location).attr('href', '#/');
 	  	}, 3500);
@@ -44,11 +40,7 @@ angular.module('MobileTimeAccounting.controllers.AddProject', [])
   	project.date = moment(project.date).add(23, 'hours').add(59, 'minutes').unix();
 
 		Projects.update(project, project).then(function() {
-			ngNotify.set(project.name + ' successfully edited', {
-					type: 'success',
-					position: 'top',
-					duration: 3000
-				});
+			Notify.success(project.name + ' successfully edited');
 			$timeout(function() {
 				$(location).attr('href', '#/');
 			}, 3500);

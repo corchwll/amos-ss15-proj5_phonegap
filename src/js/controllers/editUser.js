@@ -1,6 +1,6 @@
 angular.module('MobileTimeAccounting.controllers.EditUser', [])
 
-.controller('EditUserController', function($scope, User, ngNotify, $timeout){
+.controller('EditUserController', function($scope, User, Notify, $timeout){
 	
 	var origUser = {};
 
@@ -34,11 +34,7 @@ angular.module('MobileTimeAccounting.controllers.EditUser', [])
 	  		editUser.location_sort_is_used = 0;
 	  	}
 	  	User.add(editUser).then(function() {
-	  		ngNotify.set('User profile successfully created', {
-	  			type: 'success',
-	  			position: 'top',
-	  			duration: 3000
-	  		});
+	  		Notify.success('User profile successfully created');
 	  		$timeout(function() {
 		  		$(location).attr('href', '#/');
 		  	}, 3500);
@@ -51,11 +47,7 @@ angular.module('MobileTimeAccounting.controllers.EditUser', [])
 	  		editUser.location_sort_is_used = 0;
 	  	}
   		User.update(origUser, editUser).then(function() {
-	  		ngNotify.set('User profile successfully updated', {
-	  			type: 'success',
-	  			position: 'top',
-	  			duration: 3000
-	  		});
+	  		Notify.success('User profile successfully updated');
 				$timeout(function() {
 	  			$(location).attr('href', '#/');
 	  		}, 3500);

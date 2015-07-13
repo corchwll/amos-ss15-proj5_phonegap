@@ -1,6 +1,6 @@
 angular.module('MobileTimeAccounting.controllers.ViewProject', [])
 
-.controller('ViewProjectController', function($scope, Projects, Sessions, ngNotify, $timeout, $routeParams){
+.controller('ViewProjectController', function($scope, Projects, Sessions, Notify, $timeout, $routeParams){
 	
 	$scope.timerRunning = false;
 
@@ -69,22 +69,14 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', [])
   	Projects.getById(projectId).then(function(project) {
   		var finalDate = project.timestamp_final_date;
   		if(projectExpired(startTime, finalDate)) {
-  			ngNotify.set('It is not possible to record times after the final project date', {
-  				type: 'error',
-  				position: 'top',
-  				duration: 3000
-  			});
+  			Notify.error('It is not possible to record times after the final project date');
   		} else {
   			/* Check for maximum working time per day */
   			Sessions.getAccumulatedSessionfromDay(startDay).then(function(workingTimeOfDay) {
   		    /* Check for overlapping sessions */
   		    Sessions.checkSimpleOverlapping(startTime).then(function(result) {
   		    	if(60*60*10 <= workingTimeOfDay.working_time) {
-  		    		ngNotify.set('The total working hours can not exceed ten hours per day', {
-  						type: 'error',
-  						position: 'top',
-  						duration: 3000
-  					});
+  		    		Notify.error('The total working hours can not exceed ten hours per day');
   		    	} else if(result.overlappings === 0) {
   				    /* Start timer if it is not already running */
   				    if($scope.timerRunning === false) {
@@ -93,11 +85,7 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', [])
 				        starttimeDb(startTime, projectId);
   				    }
   					} else {
-  						ngNotify.set('You have already recorded for this time', {
-  							type: 'error',
-  							position: 'top',
-  							duration: 3000
-  						});
+  						Notify.error('You have already recorded for this time');
   					}
   		    });
   	    });
@@ -142,11 +130,7 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', [])
     						$scope.timerRunning = false;
     						Sessions.addStop(session).then(function() {
     							$scope.$broadcast('timer-reset');
-    							ngNotify.set('The total working hours can not exceed ten hours per day', {
-  									type: 'error',
-  									position: 'top',
-  									duration: 3000
-  								});
+    							Notify.error('The total working hours can not exceed ten hours per day');
     						});
     					} else if(overlapResult.overlappings === 0) {
       					$scope.$broadcast('timer-stop');
@@ -158,11 +142,7 @@ angular.module('MobileTimeAccounting.controllers.ViewProject', [])
       					$scope.timerRunning = false;
   		    			Sessions.remove(currentSession.currentSessionId).then(function() {
   		    				$scope.$broadcast('timer-reset');
-  		    				ngNotify.set('You have already recorded for this time', {
-  									type: 'error',
-  									position: 'top',
-  									duration: 3000
-  								});
+  		    				Notify.error('You have already recorded for this time');
   		    			});
       				}
       			});

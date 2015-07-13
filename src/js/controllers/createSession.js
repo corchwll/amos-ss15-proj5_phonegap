@@ -1,6 +1,6 @@
 angular.module('MobileTimeAccounting.controllers.CreateSession', [])
 
-.controller('CreateSessionController', function($scope, Sessions, Projects, $location, ngNotify, $timeout, $routeParams, Holidays){
+.controller('CreateSessionController', function($scope, Sessions, Projects, $location, Notify, $timeout, $routeParams, Holidays){
 	
 	$scope.session = {};
 	$scope.session.startTime = '08:00';
@@ -18,30 +18,18 @@ angular.module('MobileTimeAccounting.controllers.CreateSession', [])
 		var day = moment(session.date).format("YYYY-MM-DD");
 
 		if(!session.date) {
-			ngNotify.set('Please enter a date', {
-				type: 'error',
-				position: 'top',
-				duration: 3000
-			});
+			Notify.error('Please enter a date');
 		} else if(session.timestamp_start <= session.timestamp_stop) {
 			Sessions.getAccumulatedSessionfromDay(day).then(function(workingTimeOfDay) {
 
 				if(60*60*10 < (workingTimeOfDay.working_time + (session.timestamp_stop - session.timestamp_start))) {
-					ngNotify.set('The total working hours can not exceed ten hours per day', {
-						type: 'error',
-						position: 'top',
-						duration: 3000
-					});
+					Notify.error('The total working hours can not exceed ten hours per day');
 				} else {
 					/* Check for project end date */
 					Projects.getById(session.project_id).then(function(project) {
 						var finalDate = project.timestamp_final_date;
 						if(projectExpired(session.timestamp_start, finalDate)) {
-							ngNotify.set('It is not possible to record times after the final project date', {
-								type: 'error',
-								position: 'top',
-								duration: 3000
-							});
+							Notify.error('It is not possible to record times after the final project date');
 						} else {
 							Sessions.checkFullOverlapping(session.timestamp_start, session.timestamp_stop).then(function(result) {
 								if(result.overlappings === 0) {
@@ -51,21 +39,13 @@ angular.module('MobileTimeAccounting.controllers.CreateSession', [])
 											  console.log("Daily notification canceled for today");
 											});
 										}
-								  	ngNotify.set('Session successfully added', {
-							  			type: 'success',
-							  			position: 'top',
-							  			duration: 3000
-							  		});
+								  	Notify.success('Session successfully added');
 								  	$timeout(function() {
 								  		$(location).attr('href', '#/viewProject/' + session.project_id);
 								  	}, 4000);
 							  	});
 								} else {
-									ngNotify.set('You have already recorded for this time', {
-										type: 'error',
-										position: 'top',
-										duration: 3000
-									});
+									Notify.error('You have already recorded for this time');
 								}
 							});
 						}
@@ -74,11 +54,7 @@ angular.module('MobileTimeAccounting.controllers.CreateSession', [])
 			});
 
 		} else {
-			ngNotify.set('negative times are not allowed', {
-				type: 'error',
-				position: 'top',
-				duration: 3000
-			});
+			Notify.error('negative times are not allowed');
 	  }
   };
 
