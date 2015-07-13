@@ -1,4 +1,4 @@
-angular.module('MobileTimeAccounting.controllers.CreateSession', ['MobileTimeAccounting.services.Database', 'MobileTimeAccounting.services.Holidays'])
+angular.module('MobileTimeAccounting.controllers.CreateSession', [])
 
 .controller('CreateSessionController', function($scope, Sessions, Projects, $location, ngNotify, $timeout, $routeParams, Holidays){
 	

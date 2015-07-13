@@ -16,7 +16,8 @@ angular.module('MobileTimeAccounting', [
   'MobileTimeAccounting.controllers.CreateSession',
   'MobileTimeAccounting.controllers.ViewProject',
   'MobileTimeAccounting.controllers.Dashboard',
-  'MobileTimeAccounting.services.Database'
+  'MobileTimeAccounting.services.Database',
+  'MobileTimeAccounting.services.Holidays',
 ])
 
 .config(function($routeProvider) {

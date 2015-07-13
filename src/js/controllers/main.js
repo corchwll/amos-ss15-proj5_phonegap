@@ -1,4 +1,4 @@
-angular.module('MobileTimeAccounting.controllers.Main', ['MobileTimeAccounting.services.Database'])
+angular.module('MobileTimeAccounting.controllers.Main', [])
 
 .controller('MainController', function($scope, Projects, User, $timeout){
   $scope.projects = [];

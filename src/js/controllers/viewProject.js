@@ -1,4 +1,4 @@
-angular.module('MobileTimeAccounting.controllers.ViewProject', ['MobileTimeAccounting.services.Database'])
+angular.module('MobileTimeAccounting.controllers.ViewProject', [])
 
 .controller('ViewProjectController', function($scope, Projects, Sessions, ngNotify, $timeout, $routeParams){
 	

@@ -1,4 +1,4 @@
-angular.module('MobileTimeAccounting.controllers.Dashboard', ['MobileTimeAccounting.services.Database', 'MobileTimeAccounting.services.Holidays'])
+angular.module('MobileTimeAccounting.controllers.Dashboard', [])
 
 .controller('DashboardController', function($scope, Sessions, User, Projects, DummyMonth, $q, $timeout, Holidays){
 
