@@ -15,6 +15,7 @@ angular.module('MobileTimeAccounting.controllers.EditUser', [])
 				return;
 			}
 			origUser.employee_id = user[0].employee_id;
+			origUser.location_sort_is_used = user[0].location_sort_is_used;
 			$scope.editUser = user[0];
 		});
 	};
@@ -41,7 +42,9 @@ angular.module('MobileTimeAccounting.controllers.EditUser', [])
 	  	});
 	  } else {
 	  	// Update existing user
-	  	if(editUser.location_sort_is_used === true) {
+	  	if(editUser.location_sort_is_used === origUser.location_sort_is_used) {
+	  		editUser.location_sort_is_used = origUser.location_sort_is_used;
+	  	}	else if(editUser.location_sort_is_used === true) {
 	  		editUser.location_sort_is_used = 1;
 	  	} else {
 	  		editUser.location_sort_is_used = 0;
