@@ -27,6 +27,7 @@
     <preference name="StatusBarOverlaysWebView" value="false" /> 
     <preference name="StatusBarBackgroundColor" value="#00375b" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="DisallowOverscroll" value="true" />
     <gap:plugin name="org.apache.cordova.core.geolocation" />
     <gap:plugin name="io.litehelpers.cordova.sqlite" version="0.7.7" />
     <gap:plugin name="de.appplant.cordova.plugin.email-composer" version="0.8.2" />
