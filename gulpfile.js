@@ -19,7 +19,7 @@ var config = {
       './bower_components/ng-notify/dist/ng-notify.min.js',
       './bower_components/moment/moment.js',
       './bower_components/moment/min/locales.js',
-      './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+      './bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
       './bower_components/angular-bootstrap-datetimepicker-directive/angular-bootstrap-datetimepicker-directive.min.js',
       './bower_components/papaparse/papaparse.min.js',
       './bower_components/angular-confirm-click/dist/confirmClick.js',

@@ -5,9 +5,18 @@
 @import "bower_components/ng-notify/dist/ng-notify.min.css";
 @import "bower_components/eonasdan-bootstrap-datetimepicker/src/less/_bootstrap-datetimepicker.less";
 
+
+/* Corporate ID colors */
+@CIDMain: #00375b;
+@CIDSub: #bfc9d0;
+
+@brand-primary: @CIDMain;
+@navbar-default-color: @CIDSub;
+@navbar-default-link-color:  @CIDSub;
+
 /* App global styles */
 .app {
-  background-color: #bfc9d0;
+  background-color: @CIDSub;
 }
 
 /* Session icon styles */
@@ -38,22 +47,22 @@
 /* Navbar styles */
 .navbar-absolute-top {
   color: #fff;
-  background-color: #00375b;
+  background-color: @CIDMain;
   border-bottom-width: 0px;
 }
 
 .navbar-absolute-bottom .btn-group a {
-  color: #5e5e5d;
+  color: @CIDSub;
 }
 
 .navbar-absolute-bottom .btn-group a img {
-  background-color: #5e5e5d;
+  background-color: @CIDSub;
 }
 
 .navbar-absolute-bottom .btn-group a.active {
-  color: #007aff;
+  color: @CIDMain;
 }
 
 .navbar-absolute-bottom .btn-group a.active img {
-  background-color: #007aff;
+  background-color: @CIDMain;
 }
