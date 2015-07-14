@@ -1,12 +1,13 @@
 describe('Controller: ViewProjectController', function () {
 
-	beforeEach(module('ngNotify'));
-
 	// load the controller's module
 	beforeEach(module('MobileTimeAccounting.controllers.ViewProject'));
 
 	// load the database module
 	beforeEach(module('MobileTimeAccounting.services.Database'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var ViewProjectController,
 	scope;

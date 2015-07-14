@@ -1,7 +1,5 @@
 describe('Controller: CreateSessionController', function () {
 
-	beforeEach(module('ngNotify'));
-
 	// load the createSession's module
 	beforeEach(module('MobileTimeAccounting.controllers.CreateSession'));
 
@@ -10,6 +8,9 @@ describe('Controller: CreateSessionController', function () {
 
 	// load the holidays module
 	beforeEach(module('MobileTimeAccounting.services.Holidays'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var CreateSessionController,
 	scope;

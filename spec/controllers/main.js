@@ -1,12 +1,13 @@
 describe('Controller: MainController', function () {
 
-	beforeEach(module('ngNotify'));
-
 	// load the main's module
 	beforeEach(module('MobileTimeAccounting.controllers.Main'));
 
 	// load the database module
 	beforeEach(module('MobileTimeAccounting.services.Database'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var MainController,
 	scope;

@@ -1,12 +1,13 @@
 describe('Controller: AddProjectController', function () {
 
-	beforeEach(module('ngNotify'));
-
 	// load the addProjects's module
 	beforeEach(module('MobileTimeAccounting.controllers.AddProject'));
 
 	// load the database module
 	beforeEach(module('MobileTimeAccounting.services.Database'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var AddProjectController,
 	scope;

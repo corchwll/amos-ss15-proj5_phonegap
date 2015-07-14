@@ -1,12 +1,13 @@
 describe('Controller: EditUserController', function () {
 
-	beforeEach(module('ngNotify'));
-
 	// load the main's module
 	beforeEach(module('MobileTimeAccounting.controllers.EditUser'));
 
 	// load the database module
 	beforeEach(module('MobileTimeAccounting.services.Database'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var EditUserController,
 	scope;

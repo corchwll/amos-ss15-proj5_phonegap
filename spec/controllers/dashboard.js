@@ -1,7 +1,5 @@
 describe('Controller: DashboardController', function() {
 
-	beforeEach(module('ngNotify'));
-
 	// load the dashboard's module
 	beforeEach(module('MobileTimeAccounting.controllers.Dashboard'));
 
@@ -10,6 +8,9 @@ describe('Controller: DashboardController', function() {
 
 	// load the holidays module
 	beforeEach(module('MobileTimeAccounting.services.Holidays'));
+
+	// load the notification module
+	beforeEach(module('MobileTimeAccounting.services.Notification'));
 
 	var DashboardController,
 	scope;
