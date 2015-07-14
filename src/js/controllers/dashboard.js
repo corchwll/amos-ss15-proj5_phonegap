@@ -292,7 +292,7 @@ angular.module('MobileTimeAccounting.controllers.Dashboard', [])
 		console.log(encoded);
 		window.cordova.plugins.email.open({
 			to: 'hr@department.de',
-			subject: 'MobileTimeRecording CSV Export File',
+			subject: 'MobileTimeAccounting CSV Export File',
 			body: 'Please download the csv file',
 			attachments: 'base64:export.csv//' + encoded
 		});

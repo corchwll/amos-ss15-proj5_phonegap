@@ -2,7 +2,7 @@
 <widget id="de.fau.cs.osr.MobileTimeAccounting" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>MobileTimeAccounting</name>
     <description>
-        An Apache Cordova/Phonegap application for mobile time recording.
+        An Apache Cordova/Phonegap application for mobile time accounting.
     </description>
     <author href="https://github.com/corchwll/amos-ss15-proj5_phonegap">
         AMOS Team 5 SS15

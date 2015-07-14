@@ -1,5 +1,5 @@
 {
-  "name": "mobiletimerecording",
+  "name": "MobileTimeAccounting",
   "version": "0.0.0",
   "devDependencies": {
     "gulp": "^3.8.1",
