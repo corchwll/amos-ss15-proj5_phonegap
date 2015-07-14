@@ -6,7 +6,6 @@
     "angular": "1.x",
     "angular-route": "1.x",
     "mobile-angular-ui": "1.2.x",
-    "font-awesome": "4.2",
     "bootstrap": "3.x",
     "ng-notify": "~0.6.0",
     "eonasdan-bootstrap-datetimepicker": "~4.7.14",
